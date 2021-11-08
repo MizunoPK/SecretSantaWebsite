@@ -2,5 +2,5 @@
     $servername = "";
     $username = ""; 
     $password = "";
-    $dbname = "";
+    $dbname = "party";
 ?>
