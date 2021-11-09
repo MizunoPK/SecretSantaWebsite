@@ -14,6 +14,7 @@ CREATE TABLE people (
     rsvp TINYINT DEFAULT 0,
     role TINYINT DEFAULT 0,
     invited TINYINT DEFAULT 0,
+    attending TINYINT DEFAULT 0,
     in_secret_santa TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );

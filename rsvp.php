@@ -89,6 +89,12 @@
                 </div>
             </div>
 
+            <div id="passwordSelectRegion">
+                <label for="password" class="form-label">Set Password:</label>
+                <div class="note">Feel free to keep the password simple. This will only be needed for viewing who you've been assigned for the Secret Santa.</div>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+
             <div id="oldTargetsSelectRegion">
                 <label for="oldTargetSelect1" class="form-label">Please select the people you have been a Santa for before:</label>
                 <select class="form-select" id="oldTargetSelect1" name="old_target_1">
@@ -119,7 +125,7 @@
 
             <div id="ideasRegion">
                 <label for="ideas" class="form-label">Gift Topics:</label>
-                <p id="ideasDescription">Please jot down a few topics that your Santa could draw ideas from for your gift, just in case your Santa doesn't know you very well. Keep it vauge enough to leave room for creativity. Some example topics are be 'League of Legends', 'Magic the Gathering', or 'Classic Cars'.</p>
+                <div class="note">Please jot down a few topics that your Santa could draw ideas from for your gift, just in case your Santa doesn't know you very well. Keep it vague enough to leave room for creativity. Some example topics are be 'League of Legends', 'Magic the Gathering', or 'Classic Cars'.</div>
                 <textarea class="form-control" id="ideas" name="ideas" rows="3" placeholder="Enter gift topics here..."></textarea>
             </div>
 
@@ -139,18 +145,24 @@
         $("#rsvp-yes").click(function() {
             $("#secretSantaRegion").css("display", "block");
             $("#ideasRegion").css("display", "block");
+            $("#oldTargetsSelectRegion").css("display", "block");
+            $("#passwordSelectRegion").css("display", "block");
         });
         $("#rsvp-no").click(function() {
             $("#secretSantaRegion").css("display", "none");
             $("#ideasRegion").css("display", "none");
+            $("#oldTargetsSelectRegion").css("display", "none");
+            $("#passwordSelectRegion").css("display", "none");
         });
         $("#santa-yes").click(function() {
             $("#ideasRegion").css("display", "block");
             $("#oldTargetsSelectRegion").css("display", "block");
+            $("#passwordSelectRegion").css("display", "block");
         });
         $("#santa-no").click(function() {
             $("#ideasRegion").css("display", "none");
             $("#oldTargetsSelectRegion").css("display", "none");
+            $("#passwordSelectRegion").css("display", "none");
         });
     </script>
 </body>

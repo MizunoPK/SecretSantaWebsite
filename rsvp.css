@@ -14,14 +14,18 @@ form > div {
     margin-bottom: 0.5em;
 }
 
-#ideasDescription {
+.note {
     font-style: italic;
 }
 
 @media only screen and (min-width: 600px) {
     #inviteSection {
-        width: 80%;
+        width: 75%;
         margin: auto;
+        border: black solid 3px;
+        padding: 2em;
+        border-radius: 10px;
+        margin-bottom: 2em;
     }
 
     #rsvpSection {
