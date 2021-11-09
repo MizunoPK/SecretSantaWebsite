@@ -1,3 +1,27 @@
 main {
     padding: 3em 2em 3em 2em;
 }
+
+label {
+    font-weight: bold;
+}
+
+form > div {
+    margin-bottom: 2em;
+}
+
+#ideasDescription {
+    font-style: italic;
+}
+
+@media only screen and (min-width: 600px) {
+    #inviteSection {
+        width: 80%;
+        margin: auto;
+    }
+
+    #rsvpSection {
+        width: 60%;
+        margin: auto;
+    }
+}

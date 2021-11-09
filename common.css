@@ -19,7 +19,7 @@ body {
     color: var(--font-color-light);
     font-style: italic;
     margin: 0px;
-    padding: 1em 2em 1em 2em;
+    padding: 1em 3em 1em 3em;
 }
 #headerTitle > h1 {
     -webkit-text-stroke-width: 2px;
@@ -30,5 +30,5 @@ footer {
     background-color: var(--secondary-color);
     color: var(--font-color-light);
     text-align: center;
-    padding: 1em;
+    padding: 1em 3em 1em 3em;
 }
