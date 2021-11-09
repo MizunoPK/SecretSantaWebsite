@@ -9,10 +9,12 @@ CREATE TABLE people (
     id int NOT NULL AUTO_INCREMENT,
     first_name varchar(255),
     last_name varchar(255),
+    password varchar(255),
     ideas TEXT DEFAULT '',
     rsvp TINYINT DEFAULT 0,
     role TINYINT DEFAULT 0,
     invited TINYINT DEFAULT 0,
+    in_secret_santa TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );
 CREATE TABLE pairs (

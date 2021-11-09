@@ -22,7 +22,7 @@ body {
     padding: 1em 3em 1em 3em;
 }
 #headerTitle > h1 {
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: black;
 }
 
