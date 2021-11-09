@@ -41,7 +41,7 @@
         <!-- RSVP  -->
         <div id="rsvpSection">
             <h3>RSVP:</h3>
-            <form action="process_rsvp.php" method="post">
+            <form action="rsvp_process.php" method="post">
 
             <div id="nameSelectRegion">
                 <label for="nameSelect" class="form-label">Name:</label>
@@ -89,6 +89,34 @@
                 </div>
             </div>
 
+            <div id="oldTargetsSelectRegion">
+                <label for="oldTargetSelect1" class="form-label">Please select the people you have been a Santa for before:</label>
+                <select class="form-select" id="oldTargetSelect1" name="old_target_1">
+                        <option value="" selected>-- Select someone --</option>
+                        <?php if ($peopleData): ?>
+                            <?php foreach($peopleData as $row): ?>
+                                <?php if ($row['invited'] === '1'): ?>
+                                    <option value="<?= $row['id'] ?>" data-ideas="<?= $row['ideas'] ?>">
+                                        <?= $row['first_name'] ?> <?= $row['last_name'] ?>
+                                    </option>
+                                    <?php endif ?>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                </select>
+                <select class="form-select" id="oldTargetSelect2" name="old_target_2">
+                        <option value="" selected>-- Select someone --</option>
+                        <?php if ($peopleData): ?>
+                            <?php foreach($peopleData as $row): ?>
+                                <?php if ($row['invited'] === '1'): ?>
+                                    <option value="<?= $row['id'] ?>" data-ideas="<?= $row['ideas'] ?>">
+                                        <?= $row['first_name'] ?> <?= $row['last_name'] ?>
+                                    </option>
+                                    <?php endif ?>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                </select>
+            </div>
+
             <div id="ideasRegion">
                 <label for="ideas" class="form-label">Gift Topics:</label>
                 <p id="ideasDescription">Please jot down a few topics that your Santa could draw ideas from for your gift, just in case your Santa doesn't know you very well. Keep it vauge enough to leave room for creativity. Some example topics are be 'League of Legends', 'Magic the Gathering', or 'Classic Cars'.</p>
@@ -118,9 +146,11 @@
         });
         $("#santa-yes").click(function() {
             $("#ideasRegion").css("display", "block");
+            $("#oldTargetsSelectRegion").css("display", "block");
         });
         $("#santa-no").click(function() {
             $("#ideasRegion").css("display", "none");
+            $("#oldTargetsSelectRegion").css("display", "none");
         });
     </script>
 </body>
