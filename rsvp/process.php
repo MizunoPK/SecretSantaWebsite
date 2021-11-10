@@ -50,5 +50,5 @@ function process_rsvp() {
 process_rsvp();
 
 // Send to the thanks screen
-header("Location: rsvp_submitted.php");
+header("Location: submitted.php");
 ?>

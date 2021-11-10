@@ -8,7 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../common.css">
-    <link rel="stylesheet" href="rsvp.css">
+    <link rel="stylesheet" href="invite.css">
 </head>
 <body>
     <!-- Include other PHP scripts we use -->
@@ -41,7 +41,7 @@
         <!-- RSVP  -->
         <div id="rsvpSection">
             <h3>RSVP:</h3>
-            <form action="rsvp_process.php" method="post">
+            <form action="process.php" method="post">
 
             <div id="nameSelectRegion">
                 <label for="nameSelect" class="form-label">Name:</label>
