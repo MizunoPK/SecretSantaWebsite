@@ -16,6 +16,7 @@
         include 'database/database.php';
         $conn = getConnection();
         $peopleData = getPeople($conn);
+        $partyRow = getCurrentParty($conn);
     ?>
     
 
@@ -40,7 +41,7 @@
         <!-- Login  -->
         <div id="loginSection">
             <h3>Secret Santa Login:</h3>
-            <div class="note">Login here to view who you will be the Secret Santa for. Details will be available starting $date$. Use the password you set in the RSVP form.</div>
+            <div class="note">Login here to view who you will be the Secret Santa for. Details will be available starting <?php echo $partyRow['rsvp_deadline'] ?>. Use the password you set in the RSVP form.</div>
             <form action="check_login.php" method="POST">
 
             <div id="nameSelectRegion">

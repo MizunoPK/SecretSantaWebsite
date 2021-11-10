@@ -56,6 +56,26 @@ function getPerson($conn, $id) {
     }
 }
 
+// Function: getCurrentParty
+// Inputs:
+//      conn - the connection structure for the SQL database
+// Description: Get the row from the party table for this year's party
+function getCurrentParty($conn) {
+    $year = date("Y");
+    $query = "SELECT * FROM party WHERE year=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $year);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+    else {
+        return null;
+    }
+}
+
 // Function: rsvp
 // Inputs:
 //      conn - the connection structure for the SQL database 
@@ -107,6 +127,4 @@ function getTarget($conn, $santa_id) {
         return null;
     }
 }
-
-
 ?>

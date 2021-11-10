@@ -16,6 +16,7 @@
         include '../database/database.php';
         $conn = getConnection();
         $peopleData = getPeople($conn);
+        $partyRow = getCurrentParty($conn);
     ?>
     
 
@@ -29,16 +30,16 @@
     <main>
         <!-- Invite -->
         <div id="inviteSection">
-            <h3>You Have Been Invited to Our 2021 Christmas Party!</h3>
+            <h3>You Have Been Invited to Our <?php echo date("Y") ?> Christmas Party!</h3>
             <p>We are looking forward to once again being able to have an in-person party for the holidays this year, and hope you can attend!</p>
             <p>Here is the core information about the party:</p>
             <ul>
-                <li><strong>When: </strong> $date$</li>
-                <li><strong>Where: </strong> $location$</li>
+                <li><strong>When: </strong> <?php echo $partyRow['party_date'] ?></li>
+                <li><strong>Where: </strong> <?php echo $partyRow['party_location'] ?></li>
                 <li><strong>Events: </strong> We will be doing another Secret Santa this year. This site has been made to help automate the system such that everyone (including Cameron) can participate.</li>
             </ul>
             <p>Please RSVP below if you can join. Reach out to Cameron Hockenhull if you have any questions.</p>
-            <p>The last day to RSVP is <strong>$date$</strong>. That is the day we will generate Secret Santa targets. You may still come if you do not submit on time, however, please inform Cameron if such a case arises.</p>
+            <p>The last day to RSVP is <strong><?php echo $partyRow['rsvp_deadline'] ?></strong>. That is the day we will generate Secret Santa targets. You may still come if you do not submit on time, however, please inform Cameron if such a case arises.</p>
         </div>
 
         <!-- RSVP  -->

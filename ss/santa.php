@@ -22,6 +22,9 @@
         $conn = getConnection();
         $id = $_SESSION['id'];
         $personRow = getPerson($conn, $id);
+
+        // get the party info
+        $partyRow = getCurrentParty($conn);
     ?>
     
 
@@ -38,7 +41,7 @@
     <div id="santaInfoRegion">
     <?php if ( $personRow['in_secret_santa'] === 0 ): ?>
     <!-- Case: User is not participating in secret santa -->
-    <p id="notParticipating">You are currently not signed up to be participating in the Secret Santa. If you have changed your mind, you may resubmit the <a href="../rsvp/invite.php">RSVP</a> before $date$. If it has passed that date, reach out to Cameron/Kai to see if we can get you in.</p>
+    <p id="notParticipating">You are currently not signed up to be participating in the Secret Santa. If you have changed your mind, you may resubmit the <a href="../rsvp/invite.php">RSVP</a> before <?php echo $partyRow['rsvp_deadline'] ?>. If it has passed that date, reach out to Cameron/Kai to see if we can get you in.</p>
 
     <?php else: ?>
         <!-- Case: User is participating in secret santa -->
@@ -50,7 +53,7 @@
 
         <?php if ( is_null($targetRow) ): ?>
             <!-- Case: User is participating but the results are not out yet -->
-            <p id="resultsNotOut">Secret Santa targets have not been generated yet! Targets will be generated on $date$, at which point this page will update to show you who you will be the Santa for.</p>
+            <p id="resultsNotOut">Secret Santa targets have not been generated yet! Targets will be generated on <?php echo $partyRow['rsvp_deadline'] ?>, at which point this page will update to show you who you will be the Santa for.</p>
         <?php else: ?>
             <!-- Case: User is participating and the results are out -->
             <div id="target">You Are the Secret Santa For: <strong><?php echo $targetRow['first_name'] . " " . $targetRow['last_name'] ?></strong></div>

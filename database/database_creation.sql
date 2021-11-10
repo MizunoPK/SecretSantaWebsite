@@ -18,13 +18,13 @@ CREATE TABLE people (
     in_secret_santa TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );
-CREATE TABLE party {
+CREATE TABLE party (
     year int NOT NULL,
     rsvp_deadline varchar(255),
     party_date varchar(255),
     party_location varchar(255) DEFAULT "Cameron's House",
     PRIMARY KEY (year)
-}
+);
 CREATE TABLE pairs (
     santa int,
     target int,
