@@ -1,0 +1,30 @@
+main {
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+
+h3 {
+    font-size: 2.5em;
+    text-align: center;
+}
+h4 {
+    font-size: 2em;
+    margin-top: 1em;
+}
+
+#santaInfoRegion {
+    margin-top: 1em;
+    font-size: 1.5em;
+}
+
+#target {
+    margin-bottom: 1em;
+}
+
+#noIdeas {
+    font-style: italic;
+}
+
+#ideasLabel {
+    font-weight: bold;
+}

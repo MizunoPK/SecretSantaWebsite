@@ -18,13 +18,21 @@ CREATE TABLE people (
     in_secret_santa TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );
+CREATE TABLE party {
+    year int NOT NULL,
+    rsvp_deadline varchar(255),
+    party_date varchar(255),
+    party_location varchar(255) DEFAULT "Cameron's House",
+    PRIMARY KEY (year)
+}
 CREATE TABLE pairs (
     santa int,
     target int,
     party int,
     PRIMARY KEY (santa, target),
     FOREIGN KEY (santa) REFERENCES people(id),
-    FOREIGN KEY (target) REFERENCES people(id)
+    FOREIGN KEY (target) REFERENCES people(id),
+    FOREIGN KEY (party) REFERENCES party(year)
 );
 
 -- Insert data
@@ -36,6 +44,13 @@ INSERT INTO people (first_name, last_name, invited)
     VALUES ('Emily', 'Koke', 1);
 INSERT INTO people (first_name, last_name, invited)
     VALUES ('Sarah', 'Sievers', 1);
+
+INSERT INTO party (year)
+    VALUES (2018);
+INSERT INTO party (year)
+    VALUES (2020);
+INSERT INTO party (year, rsvp_deadline, party_date)
+    VALUES (2021, 'December 1st', 'December 16th at 8:00pm');
 
 INSERT INTO pairs (santa, target, party)
     VALUES (1, 3, 2018);
