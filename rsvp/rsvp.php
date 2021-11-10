@@ -7,20 +7,20 @@
     <title>Christmas Party</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="rsvp.css">
 </head>
 <body>
     <!-- Include other PHP scripts we use -->
     <?php 
-        include 'database/database.php';
+        include '../database/database.php';
         $conn = getConnection();
         $peopleData = getAll($conn, 'people');
     ?>
     
 
     <!-- Header -->
-    <?php include 'common_header.php';?>
+    <?php include '../common_header.php';?>
 
     
     <main>
@@ -126,7 +126,8 @@
             <div id="ideasRegion">
                 <label for="ideas" class="form-label">Gift Topics:</label>
                 <div class="note">Please jot down a few topics that your Santa could draw ideas from for your gift, just in case your Santa doesn't know you very well. Keep it vague enough to leave room for creativity. Some example topics are be 'League of Legends', 'Magic the Gathering', or 'Classic Cars'.</div>
-                <textarea class="form-control" id="ideas" name="ideas" rows="3" placeholder="Enter gift topics here..."></textarea>
+                <textarea class="form-control" id="ideas" name="ideas" rows="3" placeholder="Enter gift topics here..." maxlength="255"></textarea>
+                <div class="note">Max Characters: 255</div>
             </div>
 
             <button class="btn btn-primary" type="submit">Submit</button>
@@ -136,7 +137,7 @@
     </main>
 
     <!-- Footer -->
-    <?php include 'common_footer.php';?>
+    <?php include '../common_footer.php';?>
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -50,7 +50,7 @@ function rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas
 function insertPairing($conn, $santa, $target, $year) {
     $query = "INSERT INTO pairs (santa, target, party) VALUES (?,?,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('iii', $santa, $target, $party);
+    $stmt->bind_param('iii', $santa, $target, $year);
     $stmt->execute();
 }
 

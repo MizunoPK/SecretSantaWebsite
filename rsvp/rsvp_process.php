@@ -1,5 +1,5 @@
 <?php
-include "database/database.php";
+include "../database/database.php";
 
 function process_rsvp() {
     // Set up database
@@ -28,7 +28,7 @@ function process_rsvp() {
 
             // Get their ideas
             if ( isset($_POST['ideas']) ) {
-                $password = $_POST['ideas'];
+                $ideas = $_POST['ideas'];
             }
 
             // Update the pairings table with the pairings they entered
@@ -48,4 +48,7 @@ function process_rsvp() {
 }
 
 process_rsvp();
+
+// Send to the thanks screen
+header("Location: rsvp_submitted.php");
 ?>
