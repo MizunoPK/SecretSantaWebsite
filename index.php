@@ -31,6 +31,8 @@
             <div class="error viewErr">Error: Please log in before viewing that page.</div>
         <?php endif ?>
 
+        <img src="images/tree.png" alt="tree" id="tree">
+
         <div id="rsvpSection">
             <a href="rsvp/invite.php" id="rsvpLink">Click Here to go to RSVP Form</a>
         </div>

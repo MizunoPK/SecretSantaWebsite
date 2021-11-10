@@ -4,9 +4,10 @@
 }
 
 #tree {
+    visibility: hidden;
     position: absolute;
     z-index: -1;
-    width: 10%;
+    width: 300px;
 }
 
 #rsvpSection {
@@ -26,6 +27,7 @@ form > div {
     border: black solid 3px;
     border-radius: 10px;
     padding: 2em;
+    background-color: var(--bg-color);
 }
 
 @media only screen and (min-width: 400px) {
@@ -34,6 +36,7 @@ form > div {
     }
     #rsvpLink {
         border: red solid 3px;
+        background-color: var(--bg-color);
         border-radius: 10px;
         padding: 1em;
     }
@@ -44,6 +47,9 @@ form > div {
         width: 60%;
         margin: auto;
         margin-bottom: 2em;
+    }
+    #tree {
+        visibility: visible;
     }
 }
 @media only screen and (min-width: 1000px) {
