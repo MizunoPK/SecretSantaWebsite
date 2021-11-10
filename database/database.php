@@ -36,6 +36,26 @@ function getPeople($conn) {
     return $result;
 }
 
+// Function: getPerson
+// Inputs:
+//      conn - the connection structure for the SQL database
+//      id - the id of the person being fetched
+// Description: Get the people table, sorted by first name
+function getPerson($conn, $id) {
+    $query = "SELECT * FROM people WHERE id=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+    else {
+        return "null";
+    }
+}
+
 // Function: rsvp
 // Inputs:
 //      conn - the connection structure for the SQL database 

@@ -1,3 +1,8 @@
+.viewErr {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
 #tree {
     position: absolute;
     z-index: -1;

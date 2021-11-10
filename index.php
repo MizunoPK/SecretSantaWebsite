@@ -24,7 +24,12 @@
 
     
     <main>
-        <!-- <img src="images/tree.png" alt="tree" id="tree"> -->
+        <?php if ( isset($_GET['err']) && $_GET['err'] === 'unauth') : ?>
+            <div class="error viewErr">Error: You are not authorized to view that page.</div>
+        <?php endif ?>
+        <?php if ( isset($_GET['err']) && $_GET['err'] === 'notLoggedIn') : ?>
+            <div class="error viewErr">Error: Please log in before viewing that page.</div>
+        <?php endif ?>
 
         <div id="rsvpSection">
             <a href="rsvp/invite.php" id="rsvpLink">Click Here to go to RSVP Form</a>
@@ -34,7 +39,7 @@
         <div id="loginSection">
             <h3>Secret Santa Login:</h3>
             <div class="note">Login here to view who you will be the Secret Santa for. Details will be available starting $date$. Use the password you set in the RSVP form.</div>
-            <form action="ss/santa.php" method="POST">
+            <form action="check_login.php" method="POST">
 
             <div id="nameSelectRegion">
                 <label for="nameSelect" class="form-label">Name:</label>
