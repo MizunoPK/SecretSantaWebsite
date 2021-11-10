@@ -23,11 +23,7 @@
     <?php include '../common_header.php';?>
 
     <!-- Nav  -->
-    <nav>
-    <ul>
-        <li><a href="../index.php">Home</a></li>
-    </ul>
-    </nav>
+    <?php include 'rsvp_nav.php';?>
 
     
     <main>

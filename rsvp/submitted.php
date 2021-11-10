@@ -15,6 +15,8 @@
     <!-- Header -->
     <?php include '../common_header.php';?>
 
+    <!-- Nav  -->
+    <?php include 'rsvp_nav.php';?>
     
     <main>
     <h3 id="thanks">Thank you for RSVP'ing!</h3>

@@ -52,7 +52,7 @@ function getPerson($conn, $id) {
         return $row;
     }
     else {
-        return "null";
+        return null;
     }
 }
 
@@ -82,6 +82,30 @@ function insertPairing($conn, $santa, $target, $year) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('iii', $santa, $target, $year);
     $stmt->execute();
+}
+
+// Function: getTarget
+// Inputs: 
+//      conn - the connection structure for the SQL database 
+//      santa_id - the id of the santa
+// Description: gets the row for the target of the given santa... if no target has been assigned yet it returns null
+function getTarget($conn, $santa_id) {
+    $year = date("Y");
+
+    // Find the row from pairs
+    $query = "SELECT * FROM pairs WHERE santa=? AND party=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ii', $santa_id, $year);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        // Return the row for the santa's target
+        return getPerson($conn, $row['target']);
+    }
+    else {
+        return null;
+    }
 }
 
 

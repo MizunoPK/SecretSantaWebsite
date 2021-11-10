@@ -13,16 +13,45 @@
 <body>
     <!-- Include other PHP scripts we use -->
     <?php 
+        // Make sure they are allowed to view this page
         include "../session.php";
         accessCheck(0);
+
+        // Get their info from the database
+        include "../database/database.php";
+        $conn = getConnection();
+        $id = $_SESSION['id'];
+        $personRow = getPerson($conn, $id);
     ?>
     
 
     <!-- Header -->
     <?php include '../common_header.php';?>
 
+    <!-- Nav -->
+    <?php include 'santa_nav.php';?>
     
     <main>
+
+    
+    <?php if ( $personRow['in_secret_santa'] === "0" ): ?>
+    <!-- Case: User is not participating in secret santa -->
+    
+
+    <?php else: ?>
+        <!-- Case: User is participating in secret santa -->
+        <?php 
+            // Get the person's target
+            // This will return null if the target has not been assigned
+            $targetRow = getTarget($conn, $id);
+        ?>
+
+        <?php if ( is_null($targetRow) ): ?>
+            <!-- Case: User is participating but the results are not out yet -->
+        <?php else: ?>
+            <!-- Case: User is participating and the results are out -->
+        <?php endif ?>
+    <?php endif ?>
 
     </main>
 
