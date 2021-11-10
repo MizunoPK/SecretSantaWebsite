@@ -45,10 +45,10 @@ function process_rsvp() {
 
     // Update the database with the rsvp info
     rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas);
+
+    // Send to the thanks screen
+    header("Location: submitted.php?attending=" . $attending);
 }
 
 process_rsvp();
-
-// Send to the thanks screen
-header("Location: submitted.php");
 ?>

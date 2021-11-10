@@ -35,7 +35,7 @@
                 <li><strong>Events: </strong> We will be doing another Secret Santa this year. This site has been made to help automate the system such that everyone (including Cameron) can participate.</li>
             </ul>
             <p>Please RSVP below if you can join. Reach out to Cameron Hockenhull if you have any questions.</p>
-            <br>
+            <p>The last day to RSVP is <strong>$date$</strong>. That is the day we will generate Secret Santa targets. You may still come if you do not submit on time, however, please inform Cameron if such a case arises.</p>
         </div>
 
         <!-- RSVP  -->
