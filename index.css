@@ -1,0 +1,50 @@
+#tree {
+    position: absolute;
+    z-index: -1;
+    width: 10%;
+}
+
+#rsvpSection {
+    text-align: center;
+    margin-bottom: 2em;
+    padding: 1em;
+    border: red solid 3px;
+    border-radius: 10px;
+    font-size: large;
+}
+
+form > div {
+    margin-bottom: 1em;
+}
+
+#loginSection {
+    border: black solid 3px;
+    border-radius: 10px;
+    padding: 2em;
+}
+
+@media only screen and (min-width: 400px) {
+    #rsvpSection {
+        border: none;
+    }
+    #rsvpLink {
+        border: red solid 3px;
+        border-radius: 10px;
+        padding: 1em;
+    }
+
+}
+@media only screen and (min-width: 600px) {
+    #loginSection {
+        width: 60%;
+        margin: auto;
+        margin-bottom: 2em;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    #loginSection {
+        width: 45%;
+        margin: auto;
+        margin-bottom: 2em;
+    }
+}

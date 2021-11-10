@@ -26,6 +26,16 @@ function getAll($conn, $table) {
     return $result;
 }
 
+// Function: getPeople
+// Inputs:
+//      conn - the connection structure for the SQL database
+// Description: Get the people table, sorted by first name
+function getPeople($conn) {
+    $sql = "SELECT * FROM people ORDER BY first_name";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 // Function: rsvp
 // Inputs:
 //      conn - the connection structure for the SQL database 

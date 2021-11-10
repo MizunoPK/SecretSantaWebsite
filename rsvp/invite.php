@@ -15,12 +15,19 @@
     <?php 
         include '../database/database.php';
         $conn = getConnection();
-        $peopleData = getAll($conn, 'people');
+        $peopleData = getPeople($conn);
     ?>
     
 
     <!-- Header -->
     <?php include '../common_header.php';?>
+
+    <!-- Nav  -->
+    <nav>
+    <ul>
+        <li><a href="../index.php">Home</a></li>
+    </ul>
+    </nav>
 
     
     <main>
@@ -101,11 +108,9 @@
                         <option value="" selected>-- Select someone --</option>
                         <?php if ($peopleData): ?>
                             <?php foreach($peopleData as $row): ?>
-                                <?php if ($row['invited'] === '1'): ?>
-                                    <option value="<?= $row['id'] ?>" data-ideas="<?= $row['ideas'] ?>">
-                                        <?= $row['first_name'] ?> <?= $row['last_name'] ?>
-                                    </option>
-                                    <?php endif ?>
+                                <option value="<?= $row['id'] ?>" data-ideas="<?= $row['ideas'] ?>">
+                                    <?= $row['first_name'] ?> <?= $row['last_name'] ?>
+                                </option>
                             <?php endforeach ?>
                         <?php endif ?>
                 </select>
@@ -113,11 +118,9 @@
                         <option value="" selected>-- Select someone --</option>
                         <?php if ($peopleData): ?>
                             <?php foreach($peopleData as $row): ?>
-                                <?php if ($row['invited'] === '1'): ?>
-                                    <option value="<?= $row['id'] ?>" data-ideas="<?= $row['ideas'] ?>">
-                                        <?= $row['first_name'] ?> <?= $row['last_name'] ?>
-                                    </option>
-                                    <?php endif ?>
+                                <option value="<?= $row['id'] ?>" data-ideas="<?= $row['ideas'] ?>">
+                                    <?= $row['first_name'] ?> <?= $row['last_name'] ?>
+                                </option>
                             <?php endforeach ?>
                         <?php endif ?>
                 </select>
