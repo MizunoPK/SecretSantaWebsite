@@ -15,23 +15,33 @@ function getConnection() {
     return $conn;
 }
 
-// Function: getAll
-// Inputs:
-//      conn - the connection structure for the SQL database 
-//      table - The table we are fetching all from
-// Description: Given a table, return the results of a SELECT * FROM
-function getAll($conn, $table) {
-    $sql = "select * from $table";
-    $result = mysqli_query($conn, $sql);
-    return $result;
-}
-
 // Function: getPeople
 // Inputs:
 //      conn - the connection structure for the SQL database
 // Description: Get the people table, sorted by first name
 function getPeople($conn) {
     $sql = "SELECT * FROM people ORDER BY first_name";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+// Function: getParties
+// Inputs:
+//      conn - the connection structure for the SQL database
+// Description: Get the parties table, sorted by year
+function getParties($conn) {
+    $sql = "SELECT * FROM party ORDER BY year";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+// Function: getPairs
+// Inputs:
+//      conn - the connection structure for the SQL database
+//      year - the year of the party pairs are being fetched for
+// Description: Get the pairs for a given party
+function getPairs($conn, $year) {
+    $sql = "SELECT * FROM pairs WHERE party=" . $year;
     $result = mysqli_query($conn, $sql);
     return $result;
 }
