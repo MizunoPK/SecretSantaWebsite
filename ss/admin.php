@@ -52,8 +52,45 @@
         </div>
         <div class="controlSide">
             <!-- New/Update party -->
-            <!-- If it's a new party: give the option of reseting people's information -->
-            <!-- If we're resetting everyone's information: have admin select who to invite -->
+            <form action="">
+                <div id="party-year-sec">
+                    <label for="party-year">Year</label>
+                    <input type="number" name="party-year" id="party-year" title="Enter a year." step=1 required>
+                </div>
+                <div id="party-rsvp-sec">
+                    <label for="party-rsvp">RSVP Deadline</label>
+                    <input type="text" name="party-rsvp" id="party-rsvp" title="Enter a RSVP deadline." required>
+                </div>
+                <div id="party-date-sec">
+                    <label for="party-date">Party Date</label>
+                    <input type="text" name="party-date" id="party-date" title="Enter a date for the party." required>
+                </div>
+                <div id="party-location-sec">
+                    <label for="party-location">Location</label>
+                    <input type="text" name="party-location" id="party-location" title="Enter a location for the party.">
+                </div>
+
+                <div id="party-new-sec">
+                    <label for="party-new">This is a New Party</label>
+                    <input type="checkbox" name="party-new" id="party-new" checked>
+                </div>
+
+                
+                <!-- If it's a new party: give the option of reseting people's information -->
+                <div id="party-reset-sec">
+                    <label for="party-reset">Reset Flags (invited, RSVP'd, attending, etc.)</label>
+                    <input type="checkbox" name="party-reset" id="party-reset" checked>
+                </div>
+
+                <!-- If we're resetting everyone's information: have admin select who to invite -->
+                <div id="party-invite-sec">
+                    <label for="party-invites">Invitees:</label>
+                    <span id="party-invite-list"></span>
+                </div>
+
+                <button id="party-submit-button">Submit</button>
+                <button id="party-reset-button">Reset</button>
+            </form>
         </div>
     </div>
     <hr>
@@ -143,6 +180,24 @@
             }
             };
             xmlhttp.open("GET","admin_controller.php?q=updatePeople",true);
+            xmlhttp.send();
+        }
+
+        function updateInvitees() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if ( this.response === "null" ) {
+                    var emptyTableMsg = "<p class=\"emptyTable\">Database is empty.</p>"
+                    document.getElementById("party-invite-list").innerHTML = emptyTableMsg;
+                }
+                else {
+                    // update the html
+                    document.getElementById("party-invite-list").innerHTML = this.responseText;
+                }
+            }
+            };
+            xmlhttp.open("GET","admin_controller.php?q=updateInvitees",true);
             xmlhttp.send();
         }
         
