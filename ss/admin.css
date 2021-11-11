@@ -1,6 +1,14 @@
-.controlSide {
-
+#generateSection {
+    text-align: center;
+    margin-bottom: 2em;
 }
+#generateButton {
+    padding: 1em;
+    border-radius: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 
 .tableTitle {
     font-weight: bold;

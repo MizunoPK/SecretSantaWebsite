@@ -35,6 +35,13 @@
     <?php include 'santa_nav.php';?>
     
     <main>
+    <!-- Generate Secret Santa Big Red Button -->
+    <div id="generateSection">
+        <!-- <button id="generateButton">Generate Secret Santa Targets</button> -->
+        <button type="button" id="generateButton" class="btn btn-danger" onclick="generateSecretSantaTargets()">Generate Secret Santa Targets</button>
+    </div>
+    <hr>
+
     <!-- Party Section -->
     <div id="partySection" class="dataSection">
         <div class="dataTableSide">
@@ -44,7 +51,9 @@
             </span>
         </div>
         <div class="controlSide">
-            asdabsj
+            <!-- New/Update party -->
+            <!-- If it's a new party: give the option of reseting people's information -->
+            <!-- If we're resetting everyone's information: have admin select who to invite -->
         </div>
     </div>
     <hr>
@@ -56,7 +65,8 @@
             <span id="peopleTable"></span>
         </div>
         <div class="controlSide">
-            asdasds
+            <!-- New/Update Person -->
+            <!-- Show/Edit Target -->
         </div>
     </div>
     <hr>
@@ -67,7 +77,8 @@
 
         </div>
         <div class="controlSide">
-            
+            <!-- Select Year -->
+            <!-- New/Update Pair -->
         </div>
     </div>
 
@@ -82,6 +93,12 @@
     <script>
         updateParty();
         updatePeople();
+
+        // function: generateSecretSantaTargets
+        // Description: Attempts to make the pairings for the current year's secret santa targets
+        function generateSecretSantaTargets() {
+            
+        }
 
         // Function: updateParty
         // Description: Updates the party table to reflect the current state of the database
