@@ -39,26 +39,9 @@
     <div id="partySection" class="dataSection">
         <div class="dataTableSide">
         <p class="tableTitle">Parties</p>
-            <?php if ($partyData && $partyData->num_rows > 0): ?>
-                <table class="dataTable">
-                    <tr>
-                        <th>Year</th>
-                        <th>RSVP Deadline</th>
-                        <th>Party Date</th>
-                        <th>Party Location</th>
-                    </tr>
-                    <?php foreach($partyData as $row): ?>
-                        <tr>
-                            <td><?= $row['year']; ?></td>
-                            <td><?= $row['rsvp_deadline']; ?></td>
-                            <td><?= $row['party_date']; ?></td>
-                            <td><?= $row['party_location']; ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </table>
-            <?php else: ?>
-                <p class="emptyTable">Database is empty.</p>
-            <?php endif ?>
+            <span id="partyTable">
+            
+            </span>
         </div>
         <div class="controlSide">
             asdabsj
@@ -70,34 +53,7 @@
     <div id="peopleSection" class="dataSection">
         <div class="dataTableSide">
             <p class="tableTitle">People</p>
-            <?php if ($peopleData && $peopleData->num_rows > 0): ?>
-                <table class="dataTable">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Invited</th>
-                        <th>RSVP</th>
-                        <th>Attending</th>
-                        <th>In Secret Santa</th>
-                        <th>Role</th>
-                        <th>Ideas</th>
-                    </tr>
-                    <?php foreach($peopleData as $row): ?>
-                        <tr>
-                            <td><?= $row['id']; ?></td>
-                            <td><?= $row['first_name'] . " " . $row['last_name']; ?></td>
-                            <td><?= $row['invited']; ?></td>
-                            <td><?= $row['rsvp']; ?></td>
-                            <td><?= $row['attending']; ?></td>
-                            <td><?= $row['in_secret_santa']; ?></td>
-                            <td><?= $row['role']; ?></td>
-                            <td><?= $row['ideas']; ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </table>
-            <?php else: ?>
-                <p class="emptyTable">Database is empty.</p>
-            <?php endif ?>
+            <span id="peopleTable"></span>
         </div>
         <div class="controlSide">
             asdasds
@@ -124,6 +80,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
+        updateParty();
+        updatePeople();
+
+        // Function: updateParty
+        // Description: Updates the party table to reflect the current state of the database
+        function updateParty() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if ( this.response === "null" ) {
+                    var emptyTableMsg = "<p class=\"emptyTable\">Database is empty.</p>"
+                    document.getElementById("partyTable").innerHTML = emptyTableMsg;
+                }
+                else {
+                    // update the table's html
+                    document.getElementById("partyTable").innerHTML = this.responseText;
+
+                    // set up the table being clickable
+                    // setupSelectProduct();
+                }
+            }
+            };
+            xmlhttp.open("GET","admin_controller.php?q=updateParty",true);
+            xmlhttp.send();
+        }
+
+        // Function: updatePeople
+        // Description: Updates the people table to reflect the current state of the database
+        function updatePeople() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if ( this.response === "null" ) {
+                    var emptyTableMsg = "<p class=\"emptyTable\">Database is empty.</p>"
+                    document.getElementById("peopleTable").innerHTML = emptyTableMsg;
+                }
+                else {
+                    // update the table's html
+                    document.getElementById("peopleTable").innerHTML = this.responseText;
+
+                    // set up the table being clickable
+                    // setupSelectProduct();
+                }
+            }
+            };
+            xmlhttp.open("GET","admin_controller.php?q=updatePeople",true);
+            xmlhttp.send();
+        }
         
     </script>
 </body>
