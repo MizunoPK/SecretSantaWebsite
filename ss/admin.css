@@ -47,6 +47,10 @@ label {
 }
 
 /* Party Section */
+.dataTableSide {
+    padding-bottom: 2em;
+}
+
 .party-form-row {
     margin-top: 0.5em;
 }
