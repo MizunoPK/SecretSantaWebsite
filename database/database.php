@@ -15,6 +15,7 @@ function getConnection() {
     return $conn;
 }
 
+// ! People Table
 // Function: getPeople
 // Inputs:
 //      conn - the connection structure for the SQL database
@@ -73,6 +74,7 @@ function invitePerson($conn, $id) {
     mysqli_query($conn, $sql);
 }
 
+// ! Party Table
 // Function: getParties
 // Inputs:
 //      conn - the connection structure for the SQL database
@@ -121,6 +123,7 @@ function updateParty($conn, $year, $rsvp, $date, $location) {
     $stmt->execute();
 }
 
+// ! Pair Table
 // Function: getPairs
 // Inputs:
 //      conn - the connection structure for the SQL database

@@ -51,7 +51,7 @@ label {
     padding-bottom: 2em;
 }
 
-.party-form-row {
+.form-row {
     margin-top: 0.5em;
 }
 .input-label {
@@ -60,9 +60,9 @@ label {
 }
 .form-input {
     display: inline-block;
-    width: 70%;
+    width: 100%;
 }
-#party-submit-btns {
+.submit-btns {
     margin-top: 1em;
 }
 .inviteeLabel {

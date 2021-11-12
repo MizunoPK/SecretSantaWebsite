@@ -1,4 +1,6 @@
 <?php 
+    // Function: getPartyTable
+    // Description: Corresponds to when admin.php needs to update its display of the Party table
     function getPartyTable($conn) {
         // Get the parties
         $partyData = getParties($conn);
@@ -30,7 +32,9 @@
         }
     }
 
-    function updatePeople($conn) {
+    // Function: getPeopleTable
+    // Description: Corresponds to when admin.php needs to update its display of the People table
+    function getPeopleTable($conn) {
         // Get the people
         $peopleData = getPeople($conn);
 
@@ -69,7 +73,9 @@
         }
     }
 
-    function updateInvitees($conn) {
+    // Function: getInvitees
+    // Description: Corresponds to when admin.php needs to update its display of the potential invitees
+    function getInvitees($conn) {
         // Get the people
         $peopleData = getPeople($conn);
 
@@ -86,6 +92,8 @@
         }
     }
 
+    // Function: partySubmit
+    // Description: Processes the POST from when admin.php sends either a new party for the database or updates to an established one
     function partySubmit($conn) {
         $year = $_POST['year'];
         $rsvp = $_POST['rsvp'];
@@ -114,6 +122,44 @@
         }
     }
 
+    // Function: getPartyDropdown
+    // Description: Corresponds to when admin.php wants to update the contents of party dropdown menus
+    function getPartyDropdown($conn) {
+        // Get the parties
+        $partyData = getParties($conn);
+
+        // If no matches were found: send a message that there are no matches
+        if ( is_null($partyData) ) {
+            echo "null";
+        }
+        // Otherwise: compile the dropdown
+        else {
+            echo "<option value=\"\" selected>-- Select a Party --</option>";
+            foreach($partyData as $row) {
+                echo "<option value=\"" . $row['year'] . "\">" . $row['year'] . "</option>";
+            }
+        }
+    }
+
+    // Function: getTargetDropdown
+    // Description: Corresponds to when admin.php wants to update the contents of target dropdown menus
+    function getTargetDropdown($conn) {
+        echo "<option value=\"\" selected>-- Select a Target --</option>";
+
+        if ( !isset($_GET['year']) || $_GET['year'] === "" ) {
+            return;
+        }
+
+        // Get the targets
+        $targetData = getPeople($conn);
+
+        if ( !is_null($targetData) ) {
+            foreach($targetData as $row) {
+                echo "<option value=\"" . $row['id'] . "\">" . $row['first_name'] . " " . $row['last_name'] . "</option>";
+            }
+        }
+    }
+
     include '../database/database.php';
     $conn = getConnection();
 
@@ -124,10 +170,16 @@
             getPartyTable($conn);
         }
         else if ( $func === "updatePeople" ) {
-            updatePeople($conn);
+            getPeopleTable($conn);
         }
         else if ( $func === "updateInvitees" ) {
-            updateInvitees($conn);
+            getInvitees($conn);
+        }
+        else if ( $func === "updatePartyDropdown" ) {
+            getPartyDropdown($conn);
+        }
+        else if ( $func === "updateTargetDropdown" ) {
+            getTargetDropdown($conn);
         }
     }
 

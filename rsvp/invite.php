@@ -126,7 +126,7 @@
             <div id="ideasRegion">
                 <label for="ideas" class="form-label">Gift Topics:</label>
                 <div class="note">Please jot down a few topics that your Santa could draw ideas from for your gift, just in case your Santa doesn't know you very well. Keep it vague enough to leave room for creativity. Some example topics are be 'League of Legends', 'Magic the Gathering', or 'Classic Cars'.</div>
-                <textarea class="form-control" id="ideas" name="ideas" rows="3" placeholder="Enter gift topics here..." maxlength="255"></textarea>
+                <textarea class="form-control" id="ideas" name="ideas" rows="2" placeholder="Enter gift topics here..." maxlength="255"></textarea>
                 <div class="note">Max Characters: 255</div>
             </div>
 

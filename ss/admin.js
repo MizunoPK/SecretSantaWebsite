@@ -1,8 +1,15 @@
 // ! Functions run on page-startup
-updateParty();
-updatePeople();
+updatePage();
 
 // ! General Functions used in multiple sections
+function updatePage() {
+    updatePartyTable();
+    updatePeopleTable();
+    updateInvitees();
+    updatePartyDropdown();
+    updateTargetDropdown("", "people-target");
+}
+
 function setupTableClick(tableID, populateFunction) {
     var table = document.getElementById(tableID);
     if ( table === null ) {
@@ -40,9 +47,9 @@ function generateSecretSantaTargets() {
 }
 
 // ! PARTY TABLE STUFF
-// Function: updateParty
+// Function: updatePartyTable
 // Description: Updates the party table to reflect the current state of the database
-function updateParty() {
+function updatePartyTable() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -61,31 +68,6 @@ function updateParty() {
     };
     xmlhttp.open("GET","admin_controller.php?q=updateParty",true);
     xmlhttp.send();
-}
-
-// Function: updatePeople
-// Description: Updates the people table to reflect the current state of the database
-function updatePeople() {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        if ( this.response === "null" ) {
-            var emptyTableMsg = "<p class=\"emptyTable\">Database is empty.</p>"
-            document.getElementById("peopleTable").innerHTML = emptyTableMsg;
-        }
-        else {
-            // update the table's html
-            document.getElementById("peopleTable").innerHTML = this.responseText;
-
-            // set up the table being clickable
-            // setupSelectProduct();
-        }
-    }
-    };
-    xmlhttp.open("GET","admin_controller.php?q=updatePeople",true);
-    xmlhttp.send();
-
-    updateInvitees();
 }
 
 // Function: updateInvitees
@@ -175,8 +157,7 @@ $("#party-submit-button").click(function(e){
         cache: false,
         success: function(result){
             clearPartyForm();
-            updateParty();
-            updatePeople();
+            updatePage();
         }
     });
 });
@@ -186,6 +167,8 @@ $("#party-reset-button").click(function(e){
     clearPartyForm();
 });
 
+// Function: clearPartyForm
+// Description: Resets the party form
 function clearPartyForm() {
     document.getElementById("party-year").value = "";
     document.getElementById("party-rsvp").value = "";
@@ -199,6 +182,8 @@ function clearPartyForm() {
     });
 }
 
+// Function: populatePartyForm
+// Description: For a given row from the table, populate the form accordingly
 function populatePartyForm(rowSelected) {
     document.getElementById("party-year").value = rowSelected.cells[0].innerHTML;
     document.getElementById("party-rsvp").value = rowSelected.cells[1].innerHTML;
@@ -206,4 +191,73 @@ function populatePartyForm(rowSelected) {
     document.getElementById("party-location").value = rowSelected.cells[3].innerHTML;
     document.getElementById("party-new").checked = false;
     checkPartyNew();
+}
+
+// ! People Table Stuff
+// Function: updatePeopleTable
+// Description: Updates the people table to reflect the current state of the database
+function updatePeopleTable() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        if ( this.response === "null" ) {
+            var emptyTableMsg = "<p class=\"emptyTable\">Database is empty.</p>"
+            document.getElementById("peopleTable").innerHTML = emptyTableMsg;
+        }
+        else {
+            // update the table's html
+            document.getElementById("peopleTable").innerHTML = this.responseText;
+
+            // set up the table being clickable
+            // setupSelectProduct();
+        }
+    }
+    };
+    xmlhttp.open("GET","admin_controller.php?q=updatePeople",true);
+    xmlhttp.send();
+}
+
+// Show Password click event
+$("#show-hide-link").click(function(e) {
+    e.preventDefault();
+    alert("a");
+});
+
+// Function: updatePartyDropdown
+// Description: Gets the current list of parties and populates the dropdown that use that information
+function updatePartyDropdown() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        if ( this.response !== "null" ) {
+            // update the dropdown's html
+            document.getElementById("people-target-year").innerHTML = this.responseText;
+        }
+    }
+    };
+    xmlhttp.open("GET","admin_controller.php?q=updatePartyDropdown",true);
+    xmlhttp.send();
+}
+
+// When the party dropdown changes-> update the corresponding target dropdown
+$("#people-target-year").on("change", function() {
+    var year = $("#people-target-year option:selected").val();
+    var targetSelID = "people-target";
+    updateTargetDropdown(year, targetSelID);
+});
+
+// Function: updateTargetDropdown
+// Description: Gets the current list of potential targets for a given year, then updates the given dropdown
+function updateTargetDropdown(year, selectID) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        if ( this.response !== "null" ) {
+            // update the dropdown's html
+            document.getElementById(selectID).innerHTML = this.responseText;
+        }
+    }
+    };
+    xmlhttp.open("GET","admin_controller.php?q=updateTargetDropdown&year=" + year,true);
+    xmlhttp.send();
 }
