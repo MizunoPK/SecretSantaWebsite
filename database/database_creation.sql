@@ -3,6 +3,7 @@ use party;
 -- Drop existing tables
 DROP TABLE IF EXISTS pairs;
 DROP TABLE IF EXISTS people;
+DROP TABLE IF EXISTS party;
 
 -- Create tables
 CREATE TABLE people (

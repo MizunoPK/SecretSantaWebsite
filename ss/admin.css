@@ -1,3 +1,11 @@
+label {
+    font-weight: bold;
+}
+.tableTitle {
+    font-size: x-large;
+}
+
+/* Generate Button */
 #generateSection {
     text-align: center;
     margin-bottom: 2em;
@@ -9,7 +17,7 @@
     font-weight: bold;
 }
 
-
+/* General Tables */
 .tableTitle {
     font-weight: bold;
     font-style: italic;
@@ -29,8 +37,34 @@
     text-overflow: ellipsis; 
     word-wrap: break-word;
 }
-
 .emptyTable {
     font-style: italic;
     color: red;
+}
+.selectedRow {
+    background-color: yellow;
+    color: red;
+}
+
+/* Party Section */
+.party-form-row {
+    margin-top: 0.5em;
+}
+.input-label {
+    display: inline-block;
+    width: 8em;
+}
+.form-input {
+    display: inline-block;
+    width: 70%;
+}
+#party-submit-btns {
+    margin-top: 1em;
+}
+.inviteeLabel {
+    font-weight: normal;
+    margin-left: 0.2em;
+}
+#party-reset-button {
+    margin-left: 1em;
 }

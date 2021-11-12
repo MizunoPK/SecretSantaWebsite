@@ -25,27 +25,6 @@ function getPeople($conn) {
     return $result;
 }
 
-// Function: getParties
-// Inputs:
-//      conn - the connection structure for the SQL database
-// Description: Get the parties table, sorted by year
-function getParties($conn) {
-    $sql = "SELECT * FROM party ORDER BY year";
-    $result = mysqli_query($conn, $sql);
-    return $result;
-}
-
-// Function: getPairs
-// Inputs:
-//      conn - the connection structure for the SQL database
-//      year - the year of the party pairs are being fetched for
-// Description: Get the pairs for a given party
-function getPairs($conn, $year) {
-    $sql = "SELECT * FROM pairs WHERE party=" . $year;
-    $result = mysqli_query($conn, $sql);
-    return $result;
-}
-
 // Function: getPerson
 // Inputs:
 //      conn - the connection structure for the SQL database
@@ -55,26 +34,6 @@ function getPerson($conn, $id) {
     $query = "SELECT * FROM people WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row;
-    }
-    else {
-        return null;
-    }
-}
-
-// Function: getCurrentParty
-// Inputs:
-//      conn - the connection structure for the SQL database
-// Description: Get the row from the party table for this year's party
-function getCurrentParty($conn) {
-    $year = date("Y");
-    $query = "SELECT * FROM party WHERE year=?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $year);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
@@ -98,6 +57,79 @@ function rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas
     $stmt = $conn->prepare($query);
     $stmt->bind_param('iiissi', $rsvp, $attending, $in_secret_santa, $password, $ideas, $person_id);
     $stmt->execute();
+}
+
+// Function: resetFlags
+// Description: Resets the invited, rsvp, attending, and in_secret_santa flags for all people
+function resetFlags($conn) {
+    $sql = "UPDATE people SET rsvp=0, attending=0, in_secret_santa=0, invited=0";
+    mysqli_query($conn, $sql);
+}
+
+// Function: invitePerson
+// Description: Invites a given person to the party
+function invitePerson($conn, $id) {
+    $sql = "UPDATE people SET invited=1 WHERE id=" . $id;
+    mysqli_query($conn, $sql);
+}
+
+// Function: getParties
+// Inputs:
+//      conn - the connection structure for the SQL database
+// Description: Get the parties table, sorted by year
+function getParties($conn) {
+    $sql = "SELECT * FROM party ORDER BY year";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+// Function: getCurrentParty
+// Inputs:
+//      conn - the connection structure for the SQL database
+// Description: Get the row from the party table for this year's party
+function getCurrentParty($conn) {
+    $year = date("Y");
+    $query = "SELECT * FROM party WHERE year=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $year);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+    else {
+        return null;
+    }
+}
+
+// Function: insertParty
+// Description: inserts a new party in the database
+function insertParty($conn, $year, $rsvp, $date, $location) {
+    $query = "INSERT INTO party (year, rsvp_deadline, party_date, party_location) VALUES (?,?,?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('isss', $year, $rsvp, $date, $location);
+    $stmt->execute();
+}
+
+// Function updateParty
+// Description: Updates a party in the database with new info
+function updateParty($conn, $year, $rsvp, $date, $location) {
+    $query = "UPDATE party SET rsvp_deadline=?, party_date=?, party_location=? WHERE year=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('sssi', $rsvp, $date, $location, $year);
+    $stmt->execute();
+}
+
+// Function: getPairs
+// Inputs:
+//      conn - the connection structure for the SQL database
+//      year - the year of the party pairs are being fetched for
+// Description: Get the pairs for a given party
+function getPairs($conn, $year) {
+    $sql = "SELECT * FROM pairs WHERE party=" . $year;
+    $result = mysqli_query($conn, $sql);
+    return $result;
 }
 
 // Function: insertPairing
