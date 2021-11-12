@@ -153,10 +153,9 @@ function insertPairing($conn, $santa, $target, $year) {
 // Inputs: 
 //      conn - the connection structure for the SQL database 
 //      santa_id - the id of the santa
+//      year - the year we want the target from
 // Description: gets the row for the target of the given santa... if no target has been assigned yet it returns null
-function getTarget($conn, $santa_id) {
-    $year = date("Y");
-
+function getTarget($conn, $santa_id, $year) {
     // Find the row from pairs
     $query = "SELECT * FROM pairs WHERE santa=? AND party=?";
     $stmt = $conn->prepare($query);

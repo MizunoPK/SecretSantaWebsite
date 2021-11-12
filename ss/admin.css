@@ -72,3 +72,9 @@ label {
 #party-reset-button {
     margin-left: 1em;
 }
+
+/* People */
+#show-pass-label {
+    font-weight: normal;
+    color: blue;
+}

@@ -48,7 +48,7 @@
         <?php 
             // Get the person's target
             // This will return null if the target has not been assigned
-            $targetRow = getTarget($conn, $id);
+            $targetRow = getTarget($conn, $id, date("Y"));
         ?>
 
         <?php if ( is_null($targetRow) ): ?>

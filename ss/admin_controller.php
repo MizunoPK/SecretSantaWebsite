@@ -46,8 +46,8 @@
         else {
             echo "<table class=\"dataTable\">
             <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Invited</th>
             <th>RSVP</th>
             <th>Attending</th>
@@ -57,9 +57,9 @@
             </tr>";
 
             foreach($peopleData as $row) {
-                echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
-                echo "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
+                echo "<tr data-id=\"" . $row['id'] . "\" data-pass=\"" . $row['password'] . "\">";
+                echo "<td>" . $row['first_name'] . "</td>";
+                echo "<td>" . $row['last_name'] . "</td>";
                 echo "<td>" . $row['invited'] . "</td>";
                 echo "<td>" . $row['rsvp'] . "</td>";
                 echo "<td>" . $row['attending'] . "</td>";
@@ -160,6 +160,23 @@
         }
     }
 
+    // Function: getTargetFromYear
+    // Description: Corresponds to when admin.php wants to know someone's target for a given year
+    function getTargetFromYear($conn) {
+        $id = $_GET['id'];
+        $year = $_GET['year'];
+
+        // Get the targets
+        $targetData = getTarget($conn, $id, $year);
+
+        if ( !is_null($targetData) ) {
+            echo $targetData['id'];
+        }
+        else {
+            return "null";
+        }
+    }
+
     include '../database/database.php';
     $conn = getConnection();
 
@@ -180,6 +197,9 @@
         }
         else if ( $func === "updateTargetDropdown" ) {
             getTargetDropdown($conn);
+        }
+        else if ( $func === "getTarget" ) {
+            getTargetFromYear($conn);
         }
     }
 

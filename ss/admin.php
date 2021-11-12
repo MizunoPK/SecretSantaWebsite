@@ -143,7 +143,9 @@
                 <div class="form-row">
                     <label for="people-password"  class="input-label">Password:</label>
                     <input type="password" name="people-password" id="people-password" class="form-input" title="Enter a Password." required>
-                    <a href="#" class="link-info" id="show-hide-link">Show Password</a>
+                    
+                    <input type="checkbox" name="people-show-pass" id="people-show-pass" class="form-check-input">
+                        <label for="people-show-pass" class="form-check-label" id="show-pass-label">Show Password</label>
                 </div>
 
                 <!-- Ideas -->
