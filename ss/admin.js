@@ -9,7 +9,9 @@ function updatePage() {
     updatePeopleTable();
     updateInvitees();
     updatePartyDropdown("people-target-year");
+    updatePartyDropdown("pair-year");
     updateTargetDropdown("", "people-target");
+    updatePairTable();
 }
 
 function setupTableClick(tableID, populateFunction) {
@@ -403,3 +405,34 @@ $("#people-submit-button").click(function(e) {
         }
     });
 });
+
+// ! PAIRS
+// Function: updatePairTable
+// Description: updates the pair table to reflect the database and selected year
+function updatePairTable() {
+    // If no year is selected: don't draw a table\
+    var year = $("#pair-year").val();
+    if ( year === "" || year === null ) {
+        document.getElementById("pairTable").innerHTML = "<p class=\"note\">Select a Party Year to view its Secret Santa pairings.</p>";
+    }
+    else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if ( this.response === "null" ) {
+                var emptyTableMsg = "<p class=\"emptyTable\">Database is empty.</p>"
+                document.getElementById("pairTable").innerHTML = emptyTableMsg;
+            }
+            else {
+                // update the table's html
+                document.getElementById("pairTable").innerHTML = this.responseText;
+            }
+        }
+        };
+        xmlhttp.open("GET","admin_controller.php?q=updatePairs&year="+year,true);
+        xmlhttp.send();
+    }
+}
+
+// Whenever the year changes: update the pair table
+$("#pair-year").on("change", updatePairTable);

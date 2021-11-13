@@ -180,13 +180,17 @@
     <hr>
 
     <!-- Pairings Section -->
-    <div id="pairSection" class="dataSection">
-        <div class="dataTableSide">
-
+    <div id="pairSection" class="dataSection row">
+    <div class="dataTableSide col-md-7">
+        <p class="tableTitle">Pairings</p>
+            <span id="pairTable">
+                <!-- This will either contain the table or a note saying to select a table -->
+            </span>
         </div>
-        <div class="controlSide">
-            <!-- Select Year -->
-            <!-- New/Update Pair -->
+        <div class="controlSide col-md-5">
+            <!-- Select a Year Dropdown -->
+            <label for="pair-year" class="form-label">Year:</label>
+            <select class="form-select" id="pair-year" name="pair-year"></select>
         </div>
     </div>
 

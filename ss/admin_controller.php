@@ -177,6 +177,38 @@
         }
     }
 
+    // Function: getPairTable
+    // Description: Gets the table for a given year's pairs
+    function getPairTable($conn) {
+        $year = $_GET['year'];
+        $pairData = getPairs($conn, $year);
+
+        // If no pairs were found: send null
+        if ( is_null($pairData) ) {
+            echo "null";
+        }
+        // Otherwise: compile the table of matches
+        else {
+            echo "<table class=\"dataTable\">
+            <tr>
+            <th>Santa</th>
+            <th>Target</th>
+            </tr>";
+
+            foreach($pairData as $row) {
+                $santaRow = getPerson($conn, $row['santa']);
+                $targetRow = getPerson($conn, $row['target']);
+
+                echo "<tr>";
+                echo "<td>" . $santaRow['first_name'] . " " . $santaRow['last_name'] . "</td>";
+                echo "<td>" . $targetRow['first_name'] . " " . $targetRow['last_name'] . "</td>";
+                echo "</tr>";
+            }
+
+            echo "</table>";
+        }
+    }
+
     // Function: peopleSubmit
     // Description: Processes the POST from when admin.php sends either a new person for the database or updates to an established one
     function peopleSubmit($conn) {
@@ -232,6 +264,9 @@
         }
         else if ( $func === "getTarget" ) {
             getTargetFromYear($conn);
+        }
+        else if ( $func === "updatePairs" ) {
+            getPairTable($conn);
         }
     }
 
