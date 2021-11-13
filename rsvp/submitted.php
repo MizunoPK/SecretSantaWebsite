@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="submitted.css">
 </head>
 <body>
+    <?php 
+        include '../database/database.php';
+        $conn = getConnection();
+        $partyRow = getCurrentParty($conn);
+    ?>
 
     <!-- Header -->
     <?php include '../common_header.php';?>
@@ -30,12 +35,12 @@
 
         <?php if ($_GET['attending'] === '1'): ?>
             <p>We look forward to seeing you! Once again, here are the party details:</p>
-            <div><strong>When: </strong> $date$</div>
-            <div><strong>Where: </strong> $location$</div>
+            <div><strong>When: </strong> <?php echo $partyRow['party_date'] ?></div>
+            <div><strong>Where: </strong> <?php echo $partyRow['party_location'] ?></div>
         <?php endif ?>
     <?php endif ?>
     </div>
-    <p>You may update any info you submitted in this form by revisiting the <a href="invite.php">RSVP page</a> and resubmitting the form.</p> <p>You have until $date$ to update any information regarding the Secret Santa. On that date, we will be generating the Secret Santa targets. After that date, any changes in your information/status regarding the Secret Santa should be sent to Kai Mizuno.</p>
+    <p>You may update any info you submitted in this form by revisiting the <a href="invite.php">RSVP page</a> and resubmitting the form.</p> <p>You have until <?php echo $partyRow['rsvp_deadline'] ?> to update any information regarding the Secret Santa. On that date, we will be generating the Secret Santa targets. After that date, any changes in your information/status regarding the Secret Santa should be sent to Kai Mizuno.</p>
     </div>
 
     </main>

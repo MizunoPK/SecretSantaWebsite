@@ -30,7 +30,7 @@ CREATE TABLE pairs (
     santa int,
     target int,
     party int,
-    PRIMARY KEY (santa, target),
+    PRIMARY KEY (santa, target, party),
     FOREIGN KEY (santa) REFERENCES people(id),
     FOREIGN KEY (target) REFERENCES people(id),
     FOREIGN KEY (party) REFERENCES party(year)
@@ -47,15 +47,15 @@ INSERT INTO people (first_name, last_name, invited)
     VALUES ('Sarah', 'Sievers', 1);
 
 INSERT INTO party (year)
-    VALUES (2018);
+    VALUES (2017);
 INSERT INTO party (year)
-    VALUES (2020);
+    VALUES (2019);
 INSERT INTO party (year, rsvp_deadline, party_date)
     VALUES (2021, 'December 1st', 'December 16th at 8:00pm');
 
 INSERT INTO pairs (santa, target, party)
-    VALUES (1, 3, 2018);
+    VALUES (1, 3, 2017);
 INSERT INTO pairs (santa, target, party)
-    VALUES (3, 1, 2018);
+    VALUES (3, 1, 2017);
 INSERT INTO pairs (santa, target, party)
-    VALUES (1, 4, 2020);
+    VALUES (1, 4, 2019);

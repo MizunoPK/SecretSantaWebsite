@@ -46,6 +46,28 @@ function getPerson($conn, $id) {
     }
 }
 
+// Function: insertPerson
+// Description: Inserts a new person into the database and returns the id of the new person
+function insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas) {
+    $query = "INSERT INTO people (first_name, last_name, role, invited, rsvp, attending, in_secret_santa, password, ideas) VALUES (?,?,?,?,?,?,?,?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ssiiiiiss', $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas);
+    $result = $stmt->execute();
+    if ($result) {
+        return $conn->lastInsertId();
+    }
+    return "";
+}
+
+// Function: updatePerson
+// Description: Updates a person in the database
+function updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas) {
+    $query = "UPDATE people SET first_name=?, last_name=?, role=?, invited=?, rsvp=?, attending=?, in_secret_santa=?, password=?, ideas=? WHERE id=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ssiiiiissi', $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $id);
+    $stmt->execute();
+}
+
 // Function: rsvp
 // Inputs:
 //      conn - the connection structure for the SQL database 
@@ -143,10 +165,12 @@ function getPairs($conn, $year) {
 //      year - the year of this pairing
 // Description: Add a new pairing to the pairs table
 function insertPairing($conn, $santa, $target, $year) {
+    echo $santa . " " . $target . " " . $year;
     $query = "INSERT INTO pairs (santa, target, party) VALUES (?,?,?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('iii', $santa, $target, $year);
-    $stmt->execute();
+    $result = $stmt->execute();
+    echo $result;
 }
 
 // Function: getTarget

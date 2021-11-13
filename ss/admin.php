@@ -167,7 +167,7 @@
                 </div>
 
                 <!-- Hidden id -->
-                <input type="hidden" id="people-id" name="people-id" val="0">
+                <input type="hidden" id="people-id" name="people-id" val="">
 
                 <!-- Submit Buttons -->
                 <div class="submit-btns">

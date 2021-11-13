@@ -177,6 +177,38 @@
         }
     }
 
+    // Function: peopleSubmit
+    // Description: Processes the POST from when admin.php sends either a new person for the database or updates to an established one
+    function peopleSubmit($conn) {
+        // Get the POST'ed data
+        $id = $_POST['id'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $admin = (int)filter_var($_POST['admin'], FILTER_VALIDATE_BOOLEAN);
+        $invited = (int)filter_var($_POST['invited'], FILTER_VALIDATE_BOOLEAN);
+        $rsvp = (int)filter_var($_POST['rsvp'], FILTER_VALIDATE_BOOLEAN);
+        $attending = (int)filter_var($_POST['attending'], FILTER_VALIDATE_BOOLEAN);
+        $ss = (int)filter_var($_POST['ss'], FILTER_VALIDATE_BOOLEAN);
+        $password = $_POST['password'];
+        $ideas = $_POST['ideas'];
+        $targetYear = $_POST['targetYear'];
+        $target = $_POST['target'];
+
+        // If it's a new person: Insert into the table
+        if ( $id === "" ) {
+            $id = insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas);
+        }
+        // If it's an update to a person: update the table
+        else {
+            updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas);
+        }
+
+        // If a target was given: add the pairing to the pairs table
+        if ( $target !== "" && $id !== "" ) {
+            insertPairing($conn, $id, $target, $targetYear);
+        }
+    }
+
     include '../database/database.php';
     $conn = getConnection();
 
@@ -208,6 +240,9 @@
         $func = $_POST['q'];
         if ( $func === "partySubmit" ) {
             partySubmit($conn);
+        }
+        if ( $func === "peopleSubmit" ) {
+            peopleSubmit($conn);
         }
     }
 ?>

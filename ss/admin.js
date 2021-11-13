@@ -1,5 +1,7 @@
 // ! Functions run on page-startup
 updatePage();
+clearPartyForm();
+clearPeopleForm();
 
 // ! General Functions used in multiple sections
 function updatePage() {
@@ -349,3 +351,55 @@ function clearPeopleForm() {
 
     resetTableSelect("peopleTable");
 }
+
+// PEOPLE FORM SUBMIT BUTTON
+$("#people-submit-button").click(function(e) {
+    e.preventDefault();
+
+    // Get the data
+    var id = $("#people-id").val();
+    var fname = $("#people-fname").val();
+    var lname = $("#people-lname").val();
+    if ( fname === "" || lname === "" ) {
+        alert("Error: Enter a name");
+        return;
+    }
+    var admin = $("#people-admin").prop("checked");
+    var invited = $("#people-invited").prop("checked");
+    var rsvp = $("#people-rsvp").prop("checked");
+    var attending = $("#people-attending").prop("checked");
+    var ss = $("#people-ss").prop("checked");
+    var password = $("#people-password").val();
+    var ideas = $("#people-ideas").val();
+    var targetYear = $("#people-target-year").val();
+    var target = $("#people-target").val();
+
+    // Store the data
+    var dataString = 
+        "q=peopleSubmit"
+        + "&id=" + id
+        + "&fname=" + fname
+        + "&lname=" + lname
+        + "&admin=" + admin
+        + "&invited=" + invited
+        + "&rsvp=" + rsvp
+        + "&attending=" + attending
+        + "&ss=" + ss
+        + "&password=" + password
+        + "&ideas=" + ideas
+        + "&targetYear=" + targetYear
+        + "&target=" + target;
+
+    // Send the AJAX request
+    $.ajax({
+        type: "POST",
+        url: "admin_controller.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            alert(result);
+            clearPeopleForm();
+            updatePage();
+        }
+    });
+});
