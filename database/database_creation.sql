@@ -24,6 +24,7 @@ CREATE TABLE party (
     rsvp_deadline varchar(255),
     party_date varchar(255),
     party_location varchar(255) DEFAULT "Cameron's House",
+    targets_assigned TINYINT DEFAULT 0,
     PRIMARY KEY (year)
 );
 CREATE TABLE pairs (

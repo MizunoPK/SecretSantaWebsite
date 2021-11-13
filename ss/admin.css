@@ -62,6 +62,9 @@ label {
     display: inline-block;
     width: 100%;
 }
+.form-check-label {
+    display: inline;
+}
 .submit-btns {
     margin-top: 1em;
 }

@@ -75,6 +75,10 @@
                     <label for="party-new" class="form-check-label">This is a New Party</label>
                 </div>
 
+                <div class="form-row">
+                    <input type="checkbox" name="party-targets" id="party-targets" class="form-check-input">
+                    <label for="party-targets" class="form-check-label">Secret Santa targets have already been generated.</label>
+                </div>
                 
                 <!-- If it's a new party: give the option of resetting people's information -->
                 <div id="party-reset-sec" class="form-row">

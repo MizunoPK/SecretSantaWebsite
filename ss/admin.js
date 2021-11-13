@@ -152,6 +152,7 @@ $("#party-submit-button").click(function(e){
     var rsvp = $("#party-rsvp").val();
     var date = $("#party-date").val();
     var location = $("#party-location").val();
+    var targetsAssigned = $("#party-targets").prop("checked");
 
     if ( year === "" || rsvp === "" || date === "" || location == "" ) {
         alert("Error: Must enter a party year, RSVP deadline, party date, and location");
@@ -159,7 +160,7 @@ $("#party-submit-button").click(function(e){
     }
 
     // Set up the POST data
-    var dataString = "q=partySubmit&year="+year + "&rsvp="+rsvp + "&date="+date + "&location="+location;
+    var dataString = "q=partySubmit&year="+year + "&rsvp="+rsvp + "&date="+date + "&location="+location + "&targetsAssigned="+targetsAssigned;
 
     // If this is a new year: get the rest of the info
     if ( document.getElementById("party-new").checked ) {
@@ -214,6 +215,7 @@ function clearPartyForm() {
     document.getElementById("party-rsvp").value = "";
     document.getElementById("party-date").value = "";
     document.getElementById("party-location").value = "";
+    $("#party-targets").prop("checked", false);
     $("#party-new").prop("checked", true);
     checkPartyNew();
     $("#party-reset").prop("checked", true);
@@ -233,6 +235,7 @@ function populatePartyForm(rowSelected) {
     document.getElementById("party-location").value = rowSelected.cells[3].innerHTML;
     document.getElementById("party-new").checked = false;
     checkPartyNew();
+    document.getElementById("party-targets").checked = (rowSelected.cells[4].innerHTML === "1");
 }
 
 // ! People Table Stuff
