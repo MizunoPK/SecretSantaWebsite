@@ -477,3 +477,24 @@ function updatePairTable() {
 
 // Whenever the year changes: update the pair table
 $("#pair-year").on("change", updatePairTable);
+
+// Delete Year's Pairings Button:
+$("#deleteYearBtn").click(function(){
+    // If no year is selected: just ignore the press
+    var year = $("#pair-year").val();
+    if ( year === "" || year === null ) {
+        return;
+    }
+
+    // Confirm if they actually want to delete
+    if ( confirm("Are you sure you want to delete all pairings from the " + year + " party?") ) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            updatePage();
+        }
+        };
+        xmlhttp.open("GET","admin_controller.php?q=deleteYearPairs&year="+year,true);
+        xmlhttp.send();
+    }
+});

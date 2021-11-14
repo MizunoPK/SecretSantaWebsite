@@ -195,6 +195,7 @@
             <!-- Select a Year Dropdown -->
             <label for="pair-year" class="form-label">Year:</label>
             <select class="form-select" id="pair-year" name="pair-year"></select>
+            <button id="deleteYearBtn" class="btn btn-sm btn-danger">Delete All Pairings from This Year</button>
         </div>
     </div>
 

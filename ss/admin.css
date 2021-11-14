@@ -81,3 +81,8 @@ label {
     font-weight: normal;
     color: blue;
 }
+
+/* Pairs */
+#deleteYearBtn {
+    margin-top: 2em;
+}

@@ -17,7 +17,7 @@
             <th>RSVP Deadline</th>
             <th>Party Date</th>
             <th>Party Location</th>
-            <th>Targets Assigned</th>
+            <th>Targets Generated</th>
             </tr>";
 
             foreach($partyData as $row) {
@@ -244,6 +244,8 @@
         }
     }
 
+    
+
     include '../database/database.php';
     $conn = getConnection();
 
@@ -270,6 +272,9 @@
         }
         else if ( $func === "updatePairs" ) {
             getPairTable($conn);
+        }
+        else if ( $func === "deleteYearPairs" ) {
+            deletePairsFromYear($conn, $_GET['year']);
         }
     }
 

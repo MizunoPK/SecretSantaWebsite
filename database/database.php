@@ -245,4 +245,16 @@ function getPreviousTargets($conn, $santa_id) {
         return null;
     }
 }
+
+// Function: deletePairsFromYear
+// Decription: Deletes all pairs from the given year
+function deletePairsFromYear($conn, $year) {
+    $query = "DELETE FROM pairs WHERE party=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $year);
+    $stmt->execute();
+
+    // Signal that the pairs are not generated anymore for that party
+    flagSSGenerated($conn, $year, 0);
+}
 ?>
