@@ -257,4 +257,13 @@ function deletePairsFromYear($conn, $year) {
     // Signal that the pairs are not generated anymore for that party
     flagSSGenerated($conn, $year, 0);
 }
+
+// Function: deletePair
+// Description: Deletes a single pair from the database
+function deletePair($conn, $santa, $year) {
+    $query = "DELETE FROM pairs WHERE party=? AND santa=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ii', $year, $santa);
+    $stmt->execute();
+}
 ?>

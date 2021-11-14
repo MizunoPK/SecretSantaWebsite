@@ -239,8 +239,14 @@
         }
 
         // If a target was given: add the pairing to the pairs table
-        if ( $target !== "" && $id !== "" ) {
-            insertPair($conn, $id, $target, $targetYear);
+        if ($id !== "") {
+            if ( $target !== "") {
+                insertPair($conn, $id, $target, $targetYear);
+            }
+            // If no target was given but a party was selected: delete any corresponding existing pairs for this person
+            if ( $targetYear !== "" && $target === "" ) {
+                deletePair($conn, $id, $targetYear);
+            }
         }
     }
 

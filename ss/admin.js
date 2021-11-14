@@ -440,7 +440,6 @@ $("#people-submit-button").click(function(e) {
         data: dataString,
         cache: false,
         success: function(result){
-            alert(result);
             clearPeopleForm();
             updatePage();
         }
