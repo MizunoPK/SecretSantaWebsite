@@ -96,6 +96,14 @@ function invitePerson($conn, $id) {
     mysqli_query($conn, $sql);
 }
 
+// Function: getSSPartipants
+// Description: Fetches a list of the people participating in the secret santa
+function getSSParticipants($conn) {
+    $sql = "SELECT * FROM people WHERE in_secret_santa=1";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 // ! Party Table
 // Function: getParties
 // Inputs:
@@ -145,6 +153,15 @@ function updateParty($conn, $year, $rsvp, $date, $location, $targetsAssigned) {
     $stmt->execute();
 }
 
+// Function: flagSSGenerated
+// Description: Flags the given year as having had its secret santa targets generated
+function flagSSGenerated($conn, $year, $targetsAssigned) {
+    $query = "UPDATE party SET targets_assigned=? WHERE year=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ii', $targetsAssigned, $year);
+    $stmt->execute();
+}
+
 // ! Pair Table
 // Function: getPairs
 // Inputs:
@@ -157,20 +174,33 @@ function getPairs($conn, $year) {
     return $result;
 }
 
-// Function: insertPairing
+// Function: insertPair
 // Inputs:
 //      conn - the connection structure for the SQL database 
 //      santa - the id of the santa
 //      target - the id of the target
 //      year - the year of this pairing
 // Description: Add a new pairing to the pairs table
-function insertPairing($conn, $santa, $target, $year) {
-    echo $santa . " " . $target . " " . $year;
+function insertPair($conn, $santa, $target, $year) {
+    // Check if the year/santa combo already exists, and just update it if it does
+    $query = "SELECT * FROM pairs WHERE santa=? AND party=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ii', $santa, $year);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $query = "UPDATE pairs SET target=? WHERE santa=? AND party=?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('iii', $target, $santa, $year);
+        $stmt->execute();
+        return;
+    }
+
+    // If it wasn't already in the table, go ahead and insert it
     $query = "INSERT INTO pairs (santa, target, party) VALUES (?,?,?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('iii', $santa, $target, $year);
-    $result = $stmt->execute();
-    echo $result;
+    $stmt->execute();
 }
 
 // Function: getTarget
@@ -190,6 +220,26 @@ function getTarget($conn, $santa_id, $year) {
         $row = $result->fetch_assoc();
         // Return the row for the santa's target
         return getPerson($conn, $row['target']);
+    }
+    else {
+        return null;
+    }
+}
+
+// Function: getPreviousTargets
+// Description: Gets a list of the ids of previous targets for a given santa
+function getPreviousTargets($conn, $santa_id) {
+    $query = "SELECT * FROM pairs WHERE santa=? ORDER BY party";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $santa_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $ids = array();
+        foreach ( $result as $row ) {
+            $ids[] = $row['target'];
+        }
+        return $ids;
     }
     else {
         return null;

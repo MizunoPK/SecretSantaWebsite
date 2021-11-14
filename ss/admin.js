@@ -80,10 +80,48 @@ function updateTargetDropdown(year, selectID) {
 }
 
 // ! Generating Santa Targets
+$("#generateButton").click(checkGeneration);
+
+// Function: checkGeneration
+// Description: Checks whether or not we have generated before. In either case, bring up a confirmation message.
+function checkGeneration() {
+    // Check whether or not generation has happened before...
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        if ( this.response === "null" ) {
+            alert("Error: Set up this year's party before generating targets.");
+        }
+        else if ( this.response === "1" ) {
+            // We have generated before... so ask if they want to overwrite the last generation
+            if ( confirm("Targets have already been generated this year. Do you want to overwrite the previously generated targets with new ones?") ) {
+                generateSecretSantaTargets();
+            }
+        }
+        else {
+            // We have not generated before.. double check that they want to generate
+            if ( confirm("Are you sure you want to begin generation?") ) {
+                generateSecretSantaTargets();
+            }
+        }
+    }
+    };
+    xmlhttp.open("GET","admin_ss_generation.php?q=check",true);
+    xmlhttp.send();
+}
+
 // function: generateSecretSantaTargets
 // Description: Attempts to make the pairings for the current year's secret santa targets
 function generateSecretSantaTargets() {
-    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        alert(this.responseText);
+        updatePage();
+    }
+    };
+    xmlhttp.open("GET","admin_ss_generation.php?q=generate",true);
+    xmlhttp.send();
 }
 
 // ! PARTY TABLE STUFF

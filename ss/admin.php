@@ -38,7 +38,7 @@
     <!-- Generate Secret Santa Big Red Button -->
     <div id="generateSection">
         <!-- <button id="generateButton">Generate Secret Santa Targets</button> -->
-        <button type="button" id="generateButton" class="btn btn-danger" onclick="generateSecretSantaTargets()">Generate Secret Santa Targets</button>
+        <button type="button" id="generateButton" class="btn btn-danger">Generate Secret Santa Targets</button>
     </div>
     <hr>
 

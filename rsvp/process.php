@@ -34,11 +34,11 @@ function process_rsvp() {
             // Update the pairings table with the pairings they entered
             if ( isset($_POST['old_target_1']) ) {
                 $old_target_1 = (int) $_POST['old_target_1'];
-                insertPairing($conn, $person_id, $old_target_1, 2017);
+                insertPair($conn, $person_id, $old_target_1, 2017);
             }
             if ( isset($_POST['old_target_2']) ) {
                 $old_target_2 = (int) $_POST['old_target_2'];
-                insertPairing($conn, $person_id, $old_target_2, 2019);
+                insertPair($conn, $person_id, $old_target_2, 2019);
             }
         }
     }

@@ -240,7 +240,7 @@
 
         // If a target was given: add the pairing to the pairs table
         if ( $target !== "" && $id !== "" ) {
-            insertPairing($conn, $id, $target, $targetYear);
+            insertPair($conn, $id, $target, $targetYear);
         }
     }
 

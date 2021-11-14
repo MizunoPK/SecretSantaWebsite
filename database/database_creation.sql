@@ -31,21 +31,21 @@ CREATE TABLE pairs (
     santa int,
     target int,
     party int,
-    PRIMARY KEY (santa, target, party),
+    PRIMARY KEY (santa, party),
     FOREIGN KEY (santa) REFERENCES people(id),
     FOREIGN KEY (target) REFERENCES people(id),
     FOREIGN KEY (party) REFERENCES party(year)
 );
 
 -- Insert data
-INSERT INTO people (first_name, last_name, invited, role)
-    VALUES ('Kai', 'Mizuno', 1, 1);
-INSERT INTO people (first_name, last_name, invited)
-    VALUES ('Cameron', 'Hockenhull', 1);
-INSERT INTO people (first_name, last_name, invited)
-    VALUES ('Emily', 'Koke', 1);
-INSERT INTO people (first_name, last_name, invited)
-    VALUES ('Sarah', 'Sievers', 1);
+INSERT INTO people (first_name, last_name, invited, role, in_secret_santa)
+    VALUES ('Kai', 'Mizuno', 1, 1, 1);
+INSERT INTO people (first_name, last_name, invited, in_secret_santa)
+    VALUES ('Cameron', 'Hockenhull', 1, 1);
+INSERT INTO people (first_name, last_name, invited, in_secret_santa)
+    VALUES ('Emily', 'Koke', 1, 1);
+INSERT INTO people (first_name, last_name, invited, in_secret_santa)
+    VALUES ('Sarah', 'Sievers', 1, 1);
 
 INSERT INTO party (year)
     VALUES (2017);
