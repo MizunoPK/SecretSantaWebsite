@@ -88,8 +88,9 @@
         // Otherwise: compile the table of matches
         else {
             foreach($peopleData as $row) {
+                echo "<div class=\"col-md-4 col-sm-6\">";
                 echo "<input class=\"form-check-input invitee\" type=\"checkbox\" checked data-id=\"" . $row['id'] . "\">";
-                echo "<label class=\"form-check-label inviteeLabel\">" . $row['first_name'] . " " . $row['last_name'] . "</label><br>";
+                echo "<label class=\"form-check-label inviteeLabel\">" . $row['first_name'] . " " . $row['last_name'] . "</label></div>";
             }
         }
     }

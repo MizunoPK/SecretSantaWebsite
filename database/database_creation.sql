@@ -31,21 +31,40 @@ CREATE TABLE pairs (
     santa int,
     target int,
     party int,
-    PRIMARY KEY (santa, party),
-    FOREIGN KEY (santa) REFERENCES people(id),
-    FOREIGN KEY (target) REFERENCES people(id),
-    FOREIGN KEY (party) REFERENCES party(year)
+    PRIMARY KEY (santa, party)
 );
 
 -- Insert data
-INSERT INTO people (first_name, last_name, invited, role, in_secret_santa)
-    VALUES ('Kai', 'Mizuno', 1, 1, 1);
-INSERT INTO people (first_name, last_name, invited, in_secret_santa)
-    VALUES ('Cameron', 'Hockenhull', 1, 1);
-INSERT INTO people (first_name, last_name, invited, in_secret_santa)
-    VALUES ('Emily', 'Koke', 1, 1);
-INSERT INTO people (first_name, last_name, invited, in_secret_santa)
-    VALUES ('Sarah', 'Sievers', 1, 1);
+INSERT INTO people (first_name, last_name, role)
+    VALUES ('Kai', 'Mizuno', 1);
+INSERT INTO people (first_name, last_name, role)
+    VALUES ('Cameron', 'Hockenhull', 1);
+INSERT INTO people (first_name, last_name)
+    VALUES ('Emily', 'Koke');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Sarah', 'Sievers');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Renato', 'Marranzino');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Cameron', 'Johnson');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Cody', 'Murrow');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Chloe', 'King');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Chris', 'Glance');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Hunter', 'Dreier');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Logan', 'Perkins');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Rachel', 'Kelly');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Tony', 'Mai');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Josh', 'Andersen');
+INSERT INTO people (first_name, last_name)
+    VALUES ('Decker', 'Graham');
 
 INSERT INTO party (year)
     VALUES (2017);
@@ -53,10 +72,3 @@ INSERT INTO party (year)
     VALUES (2019);
 INSERT INTO party (year, rsvp_deadline, party_date)
     VALUES (2021, 'December 1st', 'December 16th at 8:00pm');
-
-INSERT INTO pairs (santa, target, party)
-    VALUES (1, 3, 2017);
-INSERT INTO pairs (santa, target, party)
-    VALUES (3, 1, 2017);
-INSERT INTO pairs (santa, target, party)
-    VALUES (1, 4, 2019);

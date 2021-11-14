@@ -89,7 +89,7 @@
                 <!-- If we're resetting everyone's information: have admin select who to invite -->
                 <div id="party-invite-sec" class="form-row">
                     <label for="party-invites">Invitees:</label><br>
-                    <span id="party-invite-list"></span>
+                    <span id="party-invite-list" class="row"></span>
                 </div>
 
                 <div class="submit-btns">
