@@ -1,0 +1,5 @@
+- Add a price cap field to party table
+- Remove the 'select previous targets' from rsvp 
+- Add populating rsvp with old info
+- Add white elephant option to party table and set up rsvp depending on it
+- Update People display in Admin s.t. there is a scroll bar for person ideas

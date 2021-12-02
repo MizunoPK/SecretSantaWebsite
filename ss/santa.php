@@ -66,6 +66,7 @@
                         echo "<div id=\"ideasLabel\">Here are the gift topics " . $targetRow['first_name'] . " submitted:</div>";
                         echo "<div id=\"ideasText\"" . $targetRow['ideas'] . "</div>";
                     }
+                    echo "<br><p>The price cap for this year's party is <strong>$40</strong>. If you have any questions or concerns, reach out to Cameron or Kai.</p>";
                 ?>
             </div>
         <?php endif ?>
