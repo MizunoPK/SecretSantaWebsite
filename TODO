@@ -2,5 +2,6 @@
 - Remove the 'select previous targets' from rsvp 
 - Add populating rsvp with old info
 - Add white elephant option to party table and set up rsvp depending on it
+- Add a white elephant tracker to help with the real-time management of the event- i.e the order of who is selecting and tracking the number of steals
 - Update People display in Admin s.t. there is a scroll bar for person ideas
 - dietary restrictions part of rsvp
