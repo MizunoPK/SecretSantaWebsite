@@ -99,7 +99,7 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
 
-            <div id="oldTargetsSelectRegion">
+            <!-- <div id="oldTargetsSelectRegion">
                 <label for="oldTargetSelect1" class="form-label">Please select the people you have been a Santa for before:</label>
                 <select class="form-select" id="oldTargetSelect1" name="old_target_1">
                         <option value="" selected>-- Select someone --</option>
@@ -121,7 +121,7 @@
                             <?php endforeach ?>
                         <?php endif ?>
                 </select>
-            </div>
+            </div> -->
 
             <div id="ideasRegion">
                 <label for="ideas" class="form-label">Gift Topics:</label>
