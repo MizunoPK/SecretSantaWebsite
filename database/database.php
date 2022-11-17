@@ -48,10 +48,10 @@ function getPerson($conn, $id) {
 
 // Function: insertPerson
 // Description: Inserts a new person into the database and returns the id of the new person
-function insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas) {
-    $query = "INSERT INTO people (first_name, last_name, role, invited, rsvp, attending, in_secret_santa, password, ideas) VALUES (?,?,?,?,?,?,?,?,?)";
+function insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $dietary_restrictions) {
+    $query = "INSERT INTO people (first_name, last_name, role, invited, rsvp, attending, in_secret_santa, password, ideas, dietary_restrictions) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssiiiiiss', $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas);
+    $stmt->bind_param('ssiiiiisss', $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $dietary_restrictions);
     $result = $stmt->execute();
     if ($result) {
         return $conn->lastInsertId();
@@ -61,10 +61,10 @@ function insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending
 
 // Function: updatePerson
 // Description: Updates a person in the database
-function updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas) {
-    $query = "UPDATE people SET first_name=?, last_name=?, role=?, invited=?, rsvp=?, attending=?, in_secret_santa=?, password=?, ideas=? WHERE id=?";
+function updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $dietary_restrictions) {
+    $query = "UPDATE people SET first_name=?, last_name=?, role=?, invited=?, rsvp=?, attending=?, in_secret_santa=?, password=?, ideas=?, dietary_restrictions=? WHERE id=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssiiiiissi', $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $id);
+    $stmt->bind_param('ssiiiiisssi', $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $dietary_restrictions, $id);
     $stmt->execute();
 }
 
@@ -73,12 +73,12 @@ function updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $atte
 //      conn - the connection structure for the SQL database 
 //      person_id - the id of the person rsvp'ing
 // Description: Update all the information gleamed from the RSVP
-function rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas) {
+function rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas, $dietary_restrictions) {
     $rsvp = 1;
     
-    $query = "UPDATE people SET rsvp=?, attending=?, in_secret_santa=?, password=?, ideas=? WHERE id=?";
+    $query = "UPDATE people SET rsvp=?, attending=?, in_secret_santa=?, password=?, ideas=?, dietary_restrictions=? WHERE id=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('iiissi', $rsvp, $attending, $in_secret_santa, $password, $ideas, $person_id);
+    $stmt->bind_param('iiisssi', $rsvp, $attending, $in_secret_santa, $password, $ideas, $dietary_restrictions, $person_id);
     $stmt->execute();
 }
 

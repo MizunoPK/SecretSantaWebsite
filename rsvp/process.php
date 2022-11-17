@@ -11,6 +11,7 @@ function process_rsvp() {
     $in_secret_santa = 0;
     $password = "";
     $ideas = "";
+    $dietary_restrictions = "";
 
     // if they are attending, keep collecting info
     if ( $_POST['rsvp'] === "yes" ) {
@@ -31,6 +32,11 @@ function process_rsvp() {
                 $ideas = $_POST['ideas'];
             }
 
+            // Get their dietary restrictions
+            if ( isset($_POST['dietary_restrictions']) ) {
+                $dietary_restrictions = $_POST['dietary_restrictions'];
+            }
+
             // Update the pairings table with the pairings they entered
             if ( isset($_POST['old_target_1']) ) {
                 $old_target_1 = (int) $_POST['old_target_1'];
@@ -44,7 +50,7 @@ function process_rsvp() {
     }
 
     // Update the database with the rsvp info
-    rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas);
+    rsvp($conn, $person_id, $attending, $in_secret_santa, $password, $ideas, $dietary_restrictions);
 
     // Send to the thanks screen
     header("Location: submitted.php?attending=" . $attending);

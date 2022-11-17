@@ -356,6 +356,7 @@ function populatePeopleForm(rowSelected) {
     document.getElementById("people-ss").checked = (rowSelected.cells[5].innerHTML === "1");
     document.getElementById("people-admin").checked = (rowSelected.cells[6].innerHTML === "1");
     document.getElementById("people-ideas").value = rowSelected.cells[7].innerHTML;
+    document.getElementById("people-dietary-restrictions").value = rowSelected.cells[8].innerHTML;
 
     // Get and set the id
     var id = rowSelected.dataset.id;
@@ -385,6 +386,7 @@ function clearPeopleForm() {
     document.getElementById("people-password").value = "";
     hidePassword();
     document.getElementById("people-ideas").value = "";
+    document.getElementById("people-dietary-restrictions").value = "";
     $("#people-admin").prop("checked", false);
     $("#people-invited").prop("checked", false);
     $("#people-rsvp").prop("checked", false);
@@ -417,6 +419,7 @@ $("#people-submit-button").click(function(e) {
     var ss = $("#people-ss").prop("checked");
     var password = $("#people-password").val();
     var ideas = $("#people-ideas").val();
+    var dietary_restrictions = $("#people-dietary-restrictions").val();
     var targetYear = $("#people-target-year").val();
     var target = $("#people-target").val();
 
@@ -433,6 +436,7 @@ $("#people-submit-button").click(function(e) {
         + "&ss=" + ss
         + "&password=" + password
         + "&ideas=" + ideas
+        + "&dietary_restrictions=" + dietary_restrictions
         + "&targetYear=" + targetYear
         + "&target=" + target;
 

@@ -58,6 +58,7 @@
             <th>In Secret Santa</th>
             <th>Role</th>
             <th>Ideas</th>
+            <th>Dietary Restrictions</th>
             </tr>";
 
             foreach($peopleData as $row) {
@@ -70,6 +71,7 @@
                 echo "<td>" . $row['in_secret_santa'] . "</td>";
                 echo "<td>" . $row['role'] . "</td>";
                 echo "<td>" . $row['ideas'] . "</td>";
+                echo "<td>" . $row['dietary_restrictions'] . "</td>";
                 echo "</tr>";
             }
 
@@ -230,16 +232,17 @@
         $ss = (int)filter_var($_POST['ss'], FILTER_VALIDATE_BOOLEAN);
         $password = $_POST['password'];
         $ideas = $_POST['ideas'];
+        $dietary_restrictions = $_POST['dietary_restrictions'];
         $targetYear = $_POST['targetYear'];
         $target = $_POST['target'];
 
         // If it's a new person: Insert into the table
         if ( $id === "" ) {
-            $id = insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas);
+            $id = insertPerson($conn, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $dietary_restrictions);
         }
         // If it's an update to a person: update the table
         else {
-            updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas);
+            updatePerson($conn, $id, $fname, $lname, $admin, $invited, $rsvp, $attending, $ss, $password, $ideas, $dietary_restrictions);
         }
 
         // If a target was given: add the pairing to the pairs table

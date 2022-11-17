@@ -162,6 +162,12 @@
                     <textarea class="form-control" id="people-ideas" name="people-ideas" rows="2" placeholder="Enter gift topics here..." maxlength="255"></textarea>
                 </div>
 
+                <!-- Dietary Restrictions -->
+                <div class="form-row">
+                    <label for="people-dietary-restrictions"  class="input-label">Dietary Restrictions:</label>
+                    <textarea class="form-control" id="people-dietary-restrictions" name="people-dietary-restrictions" rows="2" placeholder="Enter dietary restrictions here..." maxlength="255"></textarea>
+                </div>
+
                 <!-- Target -->
                 <div class="form-row">
                     <label for="people-target"  class="input-label">Target:</label>
