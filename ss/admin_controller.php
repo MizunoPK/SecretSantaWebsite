@@ -17,6 +17,7 @@
             <th>RSVP Deadline</th>
             <th>Party Date</th>
             <th>Party Location</th>
+            <th>Price Cap</th>
             <th>Targets Generated</th>
             </tr>";
 
@@ -26,6 +27,7 @@
                 echo "<td>" . $row['rsvp_deadline'] . "</td>";
                 echo "<td>" . $row['party_date'] . "</td>";
                 echo "<td>" . $row['party_location'] . "</td>";
+                echo "<td>" . $row['price_cap'] . "</td>";
                 echo "<td>" . $row['targets_assigned'] . "</td>";
                 echo "</tr>";
             }
@@ -101,13 +103,14 @@
         $year = $_POST['year'];
         $rsvp = $_POST['rsvp'];
         $date = $_POST['date'];
+        $price_cap = $_POST['price_cap'];
         $location = $_POST['location'];
         $targetsAssigned = (int)filter_var($_POST['targetsAssigned'], FILTER_VALIDATE_BOOLEAN);
 
         // Determine whether this is a CREATE or UPDATE
         if ( $_POST['new'] === "true" ) {
             // Perform the insert
-            insertParty($conn, $year, $rsvp, $date, $location, $targetsAssigned);
+            insertParty($conn, $year, $rsvp, $date, $location, $price_cap, $targetsAssigned);
 
             // Check if we want to reset values
             if ( $_POST['reset'] === "true" ) {
@@ -122,7 +125,7 @@
         }
         else {
             // Perform the update
-            updateParty($conn, $year, $rsvp, $date, $location, $targetsAssigned);
+            updateParty($conn, $year, $rsvp, $date, $location, $price_cap, $targetsAssigned);
         }
     }
 

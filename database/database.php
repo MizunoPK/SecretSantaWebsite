@@ -137,19 +137,19 @@ function getCurrentParty($conn) {
 
 // Function: insertParty
 // Description: inserts a new party in the database
-function insertParty($conn, $year, $rsvp, $date, $location, $targetsAssigned) {
-    $query = "INSERT INTO party (year, rsvp_deadline, party_date, party_location, targets_assigned) VALUES (?,?,?,?,?)";
+function insertParty($conn, $year, $rsvp, $date, $location, $price_cap, $targetsAssigned) {
+    $query = "INSERT INTO party (year, rsvp_deadline, party_date, party_location, price_cap, targets_assigned) VALUES (?,?,?,?,?,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('isssi', $year, $rsvp, $date, $location, $targetsAssigned);
+    $stmt->bind_param('isssii', $year, $rsvp, $date, $location, $price_cap, $targetsAssigned);
     $stmt->execute();
 }
 
 // Function updateParty
 // Description: Updates a party in the database with new info
-function updateParty($conn, $year, $rsvp, $date, $location, $targetsAssigned) {
-    $query = "UPDATE party SET rsvp_deadline=?, party_date=?, party_location=?, targets_assigned=? WHERE year=?";
+function updateParty($conn, $year, $rsvp, $date, $location, $price_cap, $targetsAssigned) {
+    $query = "UPDATE party SET rsvp_deadline=?, party_date=?, party_location=?, price_cap=?, targets_assigned=? WHERE year=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('sssii', $rsvp, $date, $location, $targetsAssigned, $year);
+    $stmt->bind_param('sssiii', $rsvp, $date, $location, $price_cap, $targetsAssigned, $year);
     $stmt->execute();
 }
 

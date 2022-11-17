@@ -190,15 +190,16 @@ $("#party-submit-button").click(function(e){
     var rsvp = $("#party-rsvp").val();
     var date = $("#party-date").val();
     var location = $("#party-location").val();
+    var price_cap = $("#party-price-cap").val();
     var targetsAssigned = $("#party-targets").prop("checked");
 
-    if ( year === "" || rsvp === "" || date === "" || location == "" ) {
-        alert("Error: Must enter a party year, RSVP deadline, party date, and location");
+    if ( year === "" || rsvp === "" || date === "" || location == "" || price_cap == "" ) {
+        alert("Error: Must enter a party year, RSVP deadline, party date, location, and price cap.");
         return;
     }
 
     // Set up the POST data
-    var dataString = "q=partySubmit&year="+year + "&rsvp="+rsvp + "&date="+date + "&location="+location + "&targetsAssigned="+targetsAssigned;
+    var dataString = "q=partySubmit&year="+year + "&rsvp="+rsvp + "&date="+date + "&location="+location + "&price_cap="+price_cap + "&targetsAssigned="+targetsAssigned;
 
     // If this is a new year: get the rest of the info
     if ( document.getElementById("party-new").checked ) {
@@ -253,6 +254,7 @@ function clearPartyForm() {
     document.getElementById("party-rsvp").value = "";
     document.getElementById("party-date").value = "";
     document.getElementById("party-location").value = "";
+    document.getElementById("party-price-cap").value = "";
     $("#party-targets").prop("checked", false);
     $("#party-new").prop("checked", true);
     checkPartyNew();
@@ -271,9 +273,10 @@ function populatePartyForm(rowSelected) {
     document.getElementById("party-rsvp").value = rowSelected.cells[1].innerHTML;
     document.getElementById("party-date").value = rowSelected.cells[2].innerHTML;
     document.getElementById("party-location").value = rowSelected.cells[3].innerHTML;
+    document.getElementById("party-price-cap").value = rowSelected.cells[4].innerHTML;
     document.getElementById("party-new").checked = false;
     checkPartyNew();
-    document.getElementById("party-targets").checked = (rowSelected.cells[4].innerHTML === "1");
+    document.getElementById("party-targets").checked = (rowSelected.cells[5].innerHTML === "1");
 }
 
 // ! People Table Stuff

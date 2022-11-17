@@ -69,6 +69,10 @@
                     <label for="party-location"  class="input-label">Location:</label>
                     <input type="text" name="party-location" id="party-location" class="form-input" title="Enter a location for the party.">
                 </div>
+                <div class="form-row">
+                    <label for="party-price-cap"  class="input-label">Gift Price Cap:</label>
+                    <input type="number" name="party-pricce-cap" id="party-price-cap" class="form-input" title="Enter a price cap for gifts for the party.">
+                </div>
 
                 <div id="party-new-sec" class="form-row">
                     <input type="checkbox" name="party-new" id="party-new" class="form-check-input" checked>
