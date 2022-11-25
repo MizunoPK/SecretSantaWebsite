@@ -155,12 +155,14 @@
             $("#ideasRegion").css("display", "block");
             $("#oldTargetsSelectRegion").css("display", "block");
             $("#passwordSelectRegion").css("display", "block");
+            $("#dietaryRegion").css("display", "block");
         });
         $("#rsvp-no").click(function() {
             $("#secretSantaRegion").css("display", "none");
             $("#ideasRegion").css("display", "none");
             $("#oldTargetsSelectRegion").css("display", "none");
             $("#passwordSelectRegion").css("display", "none");
+            $("#dietaryRegion").css("display", "none");
         });
         $("#santa-yes").click(function() {
             $("#ideasRegion").css("display", "block");

@@ -1,6 +1,6 @@
 - Add white elephant option to party table and set up rsvp depending on it
 - Add a white elephant tracker to help with the real-time management of the event- i.e the order of who is selecting and tracking the number of steals
 
-- dietary restrictions part of rsvp
 - Add populating rsvp with old info
 - Show password button
+- Ability to delete a person (delete from people table and all associated pairings)
