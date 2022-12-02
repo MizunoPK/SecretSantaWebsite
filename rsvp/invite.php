@@ -132,7 +132,7 @@
 
             <div id="dietaryRegion">
                 <label for="ideas" class="form-label">Dietary Restrictions:</label>
-                <div class="note">Please remind us of any dietary restrictions you may have so that we don't accidently kill you.</div>
+                <div class="note">Please remind us of any dietary restrictions you may have so that we don't accidentally kill you.</div>
                 <textarea class="form-control" id="ideas" name="dietary_restrictions" rows="2" placeholder="Enter dietary restrictions here..." maxlength="255"></textarea>
                 <div class="note">Max Characters: 255</div>
             </div>
